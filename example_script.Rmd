@@ -1,0 +1,187 @@
+---
+title: "Example Rmd"
+author: "ipumsi"
+date: 'July 27th 2022'
+output: 
+  html_document:
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Read in my_data (.csv)
+
+Base R can handle .csv and .txt files "out of the box", but these can have limitations. **Note:** With Rmd, comments/text do not require the "#" comment symbol. Instead we specificy where the `code` will go using "code chunks", as below. 
+
+```{r}
+
+my_data <- read.csv("example_data.csv")
+
+colnames(my_data)
+table(my_data$SEX)
+table(my_data$EDATTAIN)
+table(my_data$EMPSTAT)
+```
+
+
+To read in different file types, we will need to download R packages. 
+
+## Install Packages
+
+R packages are add-ons that expand the functionality of base R. Its helpful  to think of R as a series of books. "Base R" is the starter set of "books" needed for R to function. install.packages() downloads new the "book" and adds it to your collection. This step needs to be done only once, or periodically to update. Note: quotation marks ("") ARE REQUIRED to specify a package name. openxlsx is a very useful package that allows read/write of xls/xlsx files. haven provides functions to read from various stats packages, including SPSS, STATA, and SAS. Notably, haven is able to read in value and value labels
+
+```{r}
+if(!require("openxlsx")) {
+  install.packages("openxlsx")
+}
+
+if (!(require("haven"))) {
+  install.packages("haven")
+}
+```
+
+## Load Packages
+
+In order to load the package, we use library(). This is like taking the book off your shelf and opening it to read/use. This step needs to be done each time you open R/Rstudio. so it's helpful to have a section at the top of the script that loads all packages needed. Note: quotation marks ("") are NOT required for the library function.
+
+```{r}
+library(haven)
+library(openxlsx)
+```
+
+## Read in my_data (.xlsx)
+
+Excel can be convenient, but like .csv files does not allow for labeled values, like many other stats programs.
+
+```{r}
+my_data <- read.xlsx("example_data.xlsx")
+
+colnames(my_data)
+table(my_data$SEX)
+table(my_data$EDATTAIN)
+table(my_data$EMPSTAT)
+
+```
+## Read in my_data (with Labels)
+```{r}
+my_data <- read_dta("example_data.dta")
+```
+
+
+*See Environment Panel:* haven labels are complex; factors are more simple.
+
+```{r}
+my_data$SEX <- as_factor(my_data$SEX)
+my_data$EDATTAIN <- as_factor(my_data$EDATTAIN)
+my_data$EMPSTAT <- as_factor(my_data$EMPSTAT)
+```
+
+
+#### one way tables for factors
+
+```{r}
+table(my_data$SEX)
+table(my_data$EDATTAIN)
+table(my_data$EMPSTAT)
+```
+
+#### or the range for numerics
+
+```{r}
+range(my_data$AGE)
+```
+
+
+## Crosstabs (two way tables)
+```{r}
+table(my_data$EMPSTAT, my_data$SEX)
+```
+
+#### Subset by a value - those too young to work
+
+```{r}
+sub_data <- my_data[my_data$EMPSTAT != "NIU (not in universe)" ,]
+
+
+mean(my_data$AGE) ## 26
+mean(sub_data$AGE) ## 32
+
+sub_data <- droplevels(sub_data) ## drop removed labels
+```
+
+
+## Tabulate subset AND store as R object
+
+```{r}
+crosstab <- table(sub_data$EMPSTAT, sub_data$SEX)
+```
+
+
+#### print R object
+```{r}
+crosstab
+```
+
+
+#### write out table(s)
+```{r}
+write.csv(crosstab,
+          file =  "xtab_emp_by_sex.csv")
+
+write.xlsx(crosstab,
+           file = "xtab_emp_by_sex.xlsx")
+
+write_dta(as.data.frame(crosstab),
+          path = "xtab_emp_by_sex.dta") ## note different syntax
+```
+
+
+
+## Visualize crosstab
+
+```{r}
+barplot(crosstab) ## stacked by default barplot
+
+
+barplot(crosstab, beside = TRUE) ## or unstacked
+```
+
+#### Add a legend
+
+```{r}
+par("mar" = c(5.1,4.1,2.1,10.1), xpd = TRUE) ## add space for legend, and turn off clipping
+
+barplot(crosstab, beside = TRUE)
+legend("topright",
+       legend = levels(sub_data$EMPSTAT),
+       pch = 22,
+       pt.bg = grey.colors(4),
+       inset = c(-1.2,0),
+       title = "Employment Status"
+       )
+```
+
+#### Add some flair
+
+```{r}
+par("mar" = c(5.1,4.1,2.1,10.1), xpd = TRUE) ## add space for legend, and turn off clipping
+
+barplot(crosstab,
+        beside = TRUE,
+        col = rainbow(4),
+        main = "Employment by Sex"
+        )
+
+legend("topright",
+       legend = levels(sub_data$EMPSTAT),
+       pch = 22,
+       pt.bg = rainbow(4),
+       inset = c(-1.2,0),
+       title = "Employment Status"
+)
+
+```

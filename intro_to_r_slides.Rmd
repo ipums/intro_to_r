@@ -1,0 +1,1026 @@
+---
+title: "Introduction and exposure to <br/> R and Rstudio"
+author: "IPUMS International"
+institute: "Malaysia Workshop"
+date: "July 27th 2022"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+
+
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  collapse = TRUE
+)
+```
+
+<style>
+  .greyed-out {
+    color: #D3D3D3;
+  }
+</style>
+
+
+
+
+---
+
+
+# Overview 0
+
+
+Introductions
+
+--
+
+Key Concepts
+
+--
+
+Installation
+
+--
+
+Demo: Navigation (Rstudio)
+
+--
+
+Demo: Working with .R scripts
+
+--
+Demo: Working with .Rmd reports
+
+--
+
+Q&A
+
+--
+
+Resources
+
+
+
+---
+
+# Overview 1
+
+
+Introductions
+
+.greyed-out[Key Concepts]
+
+.greyed-out[Installation]
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+.greyed-out[Demo: Working with .R scripts]
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+.greyed-out[Q&A]
+
+.greyed-out[Resources]
+
+---
+
+
+# 1. Introductions
+
+
+---
+
+# Overview 2
+
+
+.greyed-out[Introductions]
+
+Key Concepts
+
+.greyed-out[Installation]
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+.greyed-out[Demo: Working with .R scripts]
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+.greyed-out[Q&A]
+
+.greyed-out[Resources]
+
+---
+
+# What is R ???
+
+A language and environment for statistical computing
+
+Effectively: R is a stats package, like stata/spss/sas
+
+# Why use R ???
+
+* free and open-source
+* data management/manipulation/visualization all in 1 program
+* IPUMS and many other organizations already use R for census/survey data - Large community support!
+
+--
+
+* endlessly customizable  
+  
+
+  
+---
+
+# rework into previous
+
+
+R vs Rstudio
+
+--
+
+- R is the engine, Rstudio is the car
+
+- Rstudio is a GUI that makes it easier to interact with R
+
+???
+
+Any R users currently - raise hands
+Rstudio facilitates work in R by creating **Rprojects**
+varying scopes of projects - user decision, we use a separate project for each country
+
+
+---
+
+# rework into previous
+
+
+Clicks vs Code
+
+--
+
+- Many stats/spreadsheet software are specialized to perform  a relatively small amount of common statistical functions. These programs tend to provide user-friendly buttons and drop down menus allowing users to **click around** in order to achieve their goals.
+  + These programs make MANY assumptions about what input data might look like and limit the options a user has to click from.
+
+
+--
+
+- R is a **programming language**. Rather than clicking buttons, users must write, or **code**, the operations they want to perform. 
+  + More of a learning curve than other programs
+  + R makes virtually no assumptions about the input data or steps of a script
+  + Can use R for data management, including meta-data, and analysis
+  + *maybe reference IPUMS/ IPUMS metadata*
+    + use IPUMSR as a case study of how greg expanded functionality to easily read/write our unique structured data
+
+
+
+---
+
+
+# Key terms/Concepts
+
+
+**Functions**, Objects, Packages
+
+To read data into R, we use the `read.csv()` **function**.
+
+* **Functions** end in parentheses
+* **Functions** take various **arguments** within their parentheses * **Functions** perform actions/operations
+
+  Here we specify  `"example_data.csv"` as the **argument** to the `read.csv` **function**. 
+
+.pull-left[
+
+User Input:
+```{r, eval = FALSE}
+
+read.csv("example_data.csv")
+```
+]
+
+.pull-right[
+
+R output:
+```{r, echo=FALSE}
+read.csv("example_data.csv")
+```
+
+]
+
+???
+
+Here we can (probably) see our data has been read in and printed...probably not what most users want/need.
+
+---
+
+
+# Key terms/Concepts
+
+
+Functions, **Objects**, Packages
+
+Instead of printing the contents of `"example_data.csv"`, we want save that information to an **R object**. 
+
+**R objects** are variables, data, (even functions) stored in R's local memory so the user can interact with them. 
+
+To create an **R object**, use the `<-` command to **assign** the contents of `"example_data.csv"` to an **R object** called `my_data`. 
+  + `<-` is called the **assignment operator** and can be read as "gets" or "gets the result of"
+  + The below code could be read as: *"my_data gets the result of read.csv"
+
+
+
+.pull-left[
+
+User Input:
+```{r, eval = FALSE}
+
+my_data <- read.csv("example_data.csv")
+```
+
+```{r, eval = FALSE}
+
+nrow(my_data)
+ncol(my_data)
+
+colnames(my_data)
+```
+
+]
+
+.pull-right[
+
+R output:
+
+
+
+<br>
+<br>
+<br>
+
+```{r, echo= FALSE}
+my_data <- read.csv("example_data.csv")
+```
+
+```{r, echo = FALSE}
+nrow(my_data)
+ncol(my_data)
+
+colnames(my_data)
+```
+
+]
+
+* (To type the assignment operator, use `[less than]``[minus sign]`)
+
+???
+
+"everything in R is an object, everything you do in R is a function" - someone, somewhere, probably
+
+
+
+---
+
+
+# Key terms/Concepts
+
+
+Functions, Objects, **Packages**
+
+In spoken languages, small words and sentences can be organized into paragraphs
+
+In R, functions and objects (including datasets) can be organized into **packages**. 
+
+--
+
+**base R** refers to the "starter set" of packages users get when they "download R".
+
+Using **base R** users *could* write code to accomplish *nearly* anything they want to...but it might take time
+
+--
+
+The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts > 18k Contributed Packages that expand the capabilities of R.
+
+
+--
+
+While openxlsx is geared towards interacting with a specific filetype, other packages streamline common operations or execute specific analysis - all serve to expand the functioanlit of R
+
+---
+
+# Key terms/Concepts
+
+
+Functions, Objects, **Packages**
+
+While base R does not have support to read .xlsx files, we can get the `openxlsx` package like so:
+
+
+```{r, eval = FALSE}
+
+install.packages("openxlsx") ## download from CRAN
+
+library(openxlsx) ## load package locally
+
+my_data <- read.xlsx("example_data.xlsx")
+
+write.xlsx(my_data, "example_data.xlsx")
+
+```
+
+
+* `openxlsx` provides ability to *read* and *write* excel files
+* `readxl` alternative package to *read* excel files
+  + Faster than `openxlsx` on large datasets
+  + No `write` functionality 
+
+**ditch readxl**
+
+--
+
+Other packages are not necesarilly focused on a specific program, but on streamlining common operations in R.
+  * `gtsummary` One option for tables.
+  * `ggplot2` Is a very popular package for visualization data 
+  * More on both of these soon
+  
+  
+```{r, eval = FALSE}
+
+install.packages("ggplot2") ## download from CRAN
+
+library(ggplot2) ## load package locally
+
+```
+
+
+???
+
+some vi
+
+---
+
+# Key terms/Concepts
+
+
+Functions, Objects, **Packages**
+
+
+.pull-left[
+The `tidyverse` refers to a collection of R packages that "share an underlying design, philosophy, grammar, and data structure." The "core tidyverse" includes 8 packages for common data types, including `ggplot` for graphics:
+]
+
+.pull-right[
+*tidyverse logo*
+]
+
+User Input:
+```{r, eval = FALSE}
+
+install.packages("tidyverse") ## download from CRAN
+
+library(tidyverse) ## load package locally
+
+```
+
+
+--
+
+**Don't be intimidated!**
+
+* Packages provide high level of *customization*
+* Data management, Analysis, Visualization, Reporting all in one program
+* See [Resource List]() for our recommendations of common/helpful R packages for working with census/survey data. 
+
+???
+
+
+
+---
+
+# Key terms/concepts
+
+Review
+
+* R vs Rstudio
+* Click vs Code
+* Functions
+* Objects
+* Packages
+
+
+--
+
+How do I get it?!?
+
+???
+
+now that you've learned some fundamentals, we'll go over:
+* installation R/Rstudio
+* basic setup and navigation.
+* Review key terms/concepts in action
+
+---
+
+
+# Overview 3
+
+
+.greyed-out[Introductions]
+
+.greyed-out[Key Concepts]
+
+Installation
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+.greyed-out[Demo: Working with .R scripts]
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+.greyed-out[Q&A]
+
+.greyed-out[Resources]
+
+---
+
+
+# Installation - R
+
+https://cran.r-project.org/
+
+```{r, echo = FALSE, fig.alt = "A screenshot of download links on cran.r-project.org"}
+knitr::include_graphics("images/r_install_1.png")
+```
+
+  
++ https://cran.r-project.orgbin/windows/base/
++ https://cran.r-project.org/bin/macosx/
++ (pre-bundled on linux)
+
+
+???
+
+Don't go too quickly on this
+
+---
+
+# Installation - Rstudio
+
+
+https://www.rstudio.com/
+
+```{r, echo = FALSE, fig.alt = "A screenshot of download links on cran.r-project.org"}
+knitr::include_graphics("images/rstudio_install2.png")
+```
+
+  + https://www.rstudio.com/products/rstudio/download/
+  + https://www.rstudio.com/products/rstudio/download-server/
+
+
+
+???
+  + **NOTE:** Might require admin privelages
+  
+---
+# Overview 4
+
+
+Review/reorient functions shown
+
+.greyed-out[Introductions]
+
+.greyed-out[Key Concepts]
+
+.greyed-out[Installation]
+
+Demo: Navigation (Rstudio)
+
+.greyed-out[Demo: Working with .R scripts]
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+.greyed-out[Q&A]
+
+.greyed-out[Resources]
+
+---
+
+# Demo: Navigating Rstudio
+
+???
+
+
+- environment setup
+- basic "pane" navigation
+  + enter basic code in console
+    + r as a calculator
+    + basic mathematic operators/forumals
+    
+  + simple built in functions - what is a function
+    + mean of vector
+    + 1:5 sequence
+    + c()
+    + vectors vs matrices vs data.frames
+      + data.frame ~ dataset
+    + built in R datasets
+    
+    
+  + reference this as analagous to a "do-file" in spss
+  + same code
+  + creating scripts/processes
+- loading packages 
+- explain packages
+- explain base r vs tidyverse
+  + consistent syntax
+  + data.frame centric - takes some of the confusion out of using R
+
+
+---
+# Overview 5
+
+
+
+
+.greyed-out[Introductions]
+
+.greyed-out[Key Concepts]
+
+.greyed-out[Installation]
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+Demo: Working with .R scripts
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+.greyed-out[Q&A]
+
+.greyed-out[Resources]
+
+
+---
+
+# Overview 6
+
+
+
+.greyed-out[Introductions]
+
+.greyed-out[Key Concepts]
+
+.greyed-out[Installation]
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+.greyed-out[Demo: Working with .R scripts]
+
+Demo: Working with .Rmd reports
+
+.greyed-out[Q&A]
+
+.greyed-out[Resources]
+
+---
+
+
+# Overview 7
+
+
+
+.greyed-out[Introductions]
+
+.greyed-out[Key Concepts]
+
+.greyed-out[Installation]
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+.greyed-out[Demo: Working with .R scripts]
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+Q&A
+
+.greyed-out[Resources]
+
+---
+
+# Overview 8
+
+
+
+.greyed-out[Introductions]
+
+.greyed-out[Key Concepts]
+
+.greyed-out[Installation]
+
+.greyed-out[Demo: Navigation (Rstudio)]
+
+.greyed-out[Demo: Working with .R scripts]
+
+.greyed-out[Demo: Working with .Rmd reports]
+
+.greyed-out[Q&A]
+
+Resources
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 6. Demo: Basic data manipulation (filter, subset, tabulate)
+
+```{r}
+library(dplyr)
+library(tidyr)
+data <- iris
+```
+- what to show??
+  + common operations for a NSO?
+  + filter by variable condition
+  + subset variables
+  + tabulation
+  + prop.tab to look at proportional margins/fancy tables
+  + find another out+of+the+box cross tab package
+
++ discuss vectors vs matrices vs data.frame
+
+- Demo script
+  + read csv/excel
+  + simple operation
+    + aggregation step
+    + **note:** IPUMS data allows the user to choose how to aggregate
+    + demo group_by, summarise
+    + analogous to making a table/ dplyr::count - maintains a data.frame
+  
+  
+- no "point-and-click"...so what do you do
+  + help fiels!
+    + navigating help files
+---
+
+
+# 6a select
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+sub_data <- data %>% select(Species, Petal.Length, Sepal.Length)
+
+nrow(sub_data)
+```
+
+
+]
+
+.pull-right[
+
+
+
+```{r, echo = FALSE}
+
+sub_data <- data %>% select(Species, Petal.Length, Sepal.Length)
+
+nrow(sub_data)
+```
+
+]
+
+---
+
+# 6b filter
+
+.pull-left[
+
+```{r, eval = FALSE}
+class(data$Species)
+sub_data2 <- data %>% filter(Species == "setosa")
+
+nrow(sub_data2)
+```
+
+
+]
+
+.pull-right[
+
+
+
+```{r, echo = FALSE}
+class(data$Species)
+sub_data2 <- data %>% filter(Species == "setosa")
+
+nrow(sub_data2)
+```
+
+]
+
+---
+
+# 6c tabulate
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+data %>% 
+  select(Species) %>% 
+  filter(Species != "setosa") %>% 
+  group_by(Species) %>% 
+  summarise(n = n())
+
+```
+
+
+]
+
+.pull-right[
+
+
+
+```{r, echo = FALSE}
+data %>% select(Species) %>% filter(Species != "setosa") %>% group_by(Species) %>% summarise(n = n())
+
+```
+
+]
+
+---
+
+
+# 7 visualize
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+table(data$Species, data$Sepal.Length)
+
+```
+
+
+]
+
+.pull-right[
+
+
+
+```{r, echo = FALSE}
+
+table(data$Species, data$Sepal.Length)
+
+
+```
+
+]
+
+---
+
+
+# 7 visualize
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+boxplot(data$Sepal.Length ~ data$Species)
+
+```
+
+
+]
+
+.pull-right[
+
+
+
+```{r, echo = FALSE}
+
+boxplot(data$Sepal.Length ~ data$Species)
+
+```
+
+]
+
+---
+
+
+# 8 Scripting
+
+These steps can be put together into a `script` - your analytical cookbook that contains all the steps you, or a colleague need to reproduce research, or weave together raw data, derived tables, figures, and commentary all into a single transferable report. 
+
+
+.pull-left[
+
+```{r, eval = FALSE}
+
+
+```
+
+
+]
+
+.pull-right[
+
+
+
+```{r, echo = FALSE}
+
+
+```
+
+]
+
+
+---
+
+# Overview 7
+ 
+
+1. .greyed-out[Introductions]
+
+2. .greyed-out[Getting Started: R vs Rstudio]
+
+3. .greyed-out[Demo: Installation]
+
+4. .greyed-out[Demo: Navigating Rstudio]
+
+5. .greyed-out[Demo: Reading files into R/Rstudio]
+
+6. .greyed-out[Demo: Basic data manipulation (filter, subset, tabulate)]
+
+7. MAYBE: Demo: Basic data visualization (of tables? regressions?)
+
+---
+
+# 7. MAYBE: Demo: Basic data visualization (of tables? regressions?)
+
+ 
+- visualize table/ analysis of section 6
+  + save as png
+  
+- geom_col
+- geom_bar
+- geom_hist
+
+
+---
+
+
+
+
+# 8. Advanced application: compile code in .Rmd
+
+- show compiled .Rmd
+- dont dwell on mechanics
+- output table from section 6
+- output plot from section 7
+- add commentary directly to plots/tables rather than a clunky email
+- *might be analogous to "log file" from SPSS (??)*
+
+---
+
+# 9. Resources / help
+
+* download links
+* links to tutorials/vignettes
+  + R for data science
+  + Moderndive
+  
+
+For webpage
+  * links to resources
+  * datasets in multiple formats
+  * script of analysis
+
+---
+
+
+# NOTES
+
+**be aware of audience** - older "beaurocrats" younger folks
+  + consider adding in breaks for questions
+  
+
+1. Generate synthetic dataset using malaysian 2010? 2000?
+  + subset down to a small sample size and variables
+  
+1. spots for interaction
+  + if you learned something new, give a thumbs up in the chat
+
+1. update official name
+  + edatain by sex
+  + empstat by sex
+
+1. where to go for help 
+
+1. What are the 3 key takeaways??
+  + how to install
+  + where to go for resources
+
+1. Good practices in tidy code/code management / literate programming
+  + reuseable code
+  + legible code
+  + rmd for documentation
+  + rmd for reproducibility
+
+1. Working with IPUMS data can be one example, but shouldn't be the only focus. 
+  + Show how to read in other data file types. 
+  + Don't need to focus on working with IPUMS value labels or IPUMS-specific topics like that.
+1. 45 mins for presentation
+
+1. Consider highlighting `sink` function - does this parallel stata operations?
+  + can we better parallel stata operations in our demo
+
+1. **MAYBE** have a streamline demo/workflow that builds to loading, manipulate, save
+1. **THEN** have a section on "tips and tricks"
+  + possibly tie in "help section" to talk of libraries 
+  + as a way to explore the functions within the R package
+  
+  
+---
+# MAYBE
+
+
+- csv
+- IPUMS style
+- spss style?
+  + can haven do STATA, SAS and SPSS
+- check [dosm website](https://www.dosm.gov.my/v1/index.php?r=column3/accordion&menu_id=aHhRYUpWS3B4VXlYaVBOeUF0WFpWUT09) for data.
+  
+- Demo script
+  + read csv
+  + OR read excel
+    + discuss vectors vs matrices vs data.frame
+
+- connect to external db ?
+  + db connect
+  + coneection <- dbconnect::dbconnect("filepath")
+
+  
+---
+
+# To Do
+
+1. Download malaysia dataset*
+1. generate synthetic data
+  + check parameters
+1. Save synth data as
+  + .csv
+  + xlsx
+  + stata
+  + spss
+1. generate resources list
+  + common functions in R
+  + tidyerse cheatsheets
+
+apropos
+help.search
+
+---
+    
+# QUESTIONS FOR GROUP
+
+
+
+1. What is a good dataset to use / demo
+  + is there a specific dataset /analysis someone else will be using elsewhere in the workshop?
+  + does Malaysia have publicly available data
+
+1. what in addition to IPUMS data might they be interested in?
+  + API support, ipums API, DHS API
+  + are database connections expected to be relevant
+  + Are .fwf expected formats? should we go into detail on that
+  + other datasets/ data types to tie in?
+    + reference working with GIS data?
+
+---
