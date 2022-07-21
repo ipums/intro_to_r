@@ -195,14 +195,16 @@ To read data into R, we use the `read.csv()` **function**.
 * **Functions** end in parentheses
 * **Functions** take various **arguments** within their parentheses * **Functions** perform actions/operations
 
-  Here we specify  `"example_data.csv"` as the **argument** to the `read.csv` **function**. 
+* **Functions** take `inputs` and return `outputs`.
+
+  Here the input is the filepath, `"example_data.csv"` specified as the `file=`  **argument** of the `read.csv` **function**. 
 
 .pull-left[
 
 User Input:
 ```{r, eval = FALSE}
 
-read.csv("example_data.csv")
+read.csv(file="example_data.csv")
 ```
 ]
 
@@ -227,6 +229,10 @@ Here we can (probably) see our data has been read in and printed...probably not 
 
 Functions, **Objects**, Packages
 
+
+Technically, `read.csv()` returns a `data.frame`
+  + `data.frame`s are like spreadsheets, with data organized into rows and columns.
+  
 Instead of printing the contents of `"example_data.csv"`, we want save that information to an **R object**. 
 
 **R objects** are variables, data, (even functions) stored in R's local memory so the user can interact with them. 
@@ -235,6 +241,16 @@ To create an **R object**, use the `<-` command to **assign** the contents of `"
   + `<-` is called the **assignment operator** and can be read as "gets" or "gets the result of"
   + The below code could be read as: *"my_data gets the result of read.csv"
 
+---
+
+
+# Key terms/Concepts
+
+
+Functions, **Objects**, Packages
+
+Now that `my_data` is stored as an **R object**, we can use **functions** to interact with it.
+  * To type the assignment operator, use `[less than]``[minus sign]`
 
 
 .pull-left[
@@ -243,14 +259,7 @@ User Input:
 ```{r, eval = FALSE}
 
 my_data <- read.csv("example_data.csv")
-```
-
-```{r, eval = FALSE}
-
-nrow(my_data)
-ncol(my_data)
-
-colnames(my_data)
+# View(my_data)
 ```
 
 ]
@@ -258,32 +267,56 @@ colnames(my_data)
 .pull-right[
 
 R output:
-
-
-
-<br>
-<br>
-<br>
-
 ```{r, echo= FALSE}
 my_data <- read.csv("example_data.csv")
-```
-
-```{r, echo = FALSE}
-nrow(my_data)
-ncol(my_data)
-
-colnames(my_data)
+# View(my_data)
 ```
 
 ]
 
-* (To type the assignment operator, use `[less than]``[minus sign]`)
 
 ???
 
 "everything in R is an object, everything you do in R is a function" - someone, somewhere, probably
 
+---
+
+
+
+# Key terms/Concepts
+
+Some functions work on `matrices` or `data.tables`, while others are meant for single columns or `vectors`.
+
+Data **Objects** with named elements (like columns) can be accessed using `$`
+
+.pull-left[
+
+User Input:
+```{r, eval = FALSE}
+nrow(my_data)
+ncol(my_data)
+colnames(my_data)
+
+mean(my_data$AGE)
+summary(my_data$AGE)
+```
+
+]
+
+.pull-right[
+
+R output:
+```{r, echo= FALSE}
+
+nrow(my_data)
+ncol(my_data)
+colnames(my_data)
+
+mean(my_data$AGE)
+summary(my_data$AGE)
+```
+
+]
 
 
 ---
@@ -294,29 +327,31 @@ colnames(my_data)
 
 Functions, Objects, **Packages**
 
-In spoken languages, small words and sentences can be organized into paragraphs
-
-In R, functions and objects (including datasets) can be organized into **packages**. 
-
---
+**Packages** are bundles of In R, collections of **functions** can be bundled into **package**.
 
 **base R** refers to the "starter set" of packages users get when they "download R".
+
+--
 
 Using **base R** users *could* write code to accomplish *nearly* anything they want to...but it might take time
 
 --
 
 The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts > 18k Contributed Packages that expand the capabilities of R.
+  + Add support for specific/obscure programs or file types
+  + Streamline common tasks, data wrangling/visualization
+  + Bundle complex analysis/operations into simple, user friendly functions
 
 
---
+???
+
+3 main "avenues" for packages
 
 While openxlsx is geared towards interacting with a specific filetype, other packages streamline common operations or execute specific analysis - all serve to expand the functioanlit of R
 
 ---
 
 # Key terms/Concepts
-
 
 Functions, Objects, **Packages**
 
@@ -336,33 +371,39 @@ write.xlsx(my_data, "example_data.xlsx")
 ```
 
 
-* `openxlsx` provides ability to *read* and *write* excel files
-* `readxl` alternative package to *read* excel files
-  + Faster than `openxlsx` on large datasets
-  + No `write` functionality 
+* `install.packages()` needs to be done only once - or periodically to update. 
+* `library()` needs to called each time you open R (to access that package)
 
-**ditch readxl**
+---
 
---
+# Key terms/Concepts
 
-Other packages are not necesarilly focused on a specific program, but on streamlining common operations in R.
-  * `gtsummary` One option for tables.
-  * `ggplot2` Is a very popular package for visualization data 
-  * More on both of these soon
-  
+Functions, Objects, **Packages**
+
+
+.pull-left[
   
 ```{r, eval = FALSE}
 
-install.packages("ggplot2") ## download from CRAN
+install.packages("gtsummary") ## download from CRAN
+install.packages("ggplot2") 
 
-library(ggplot2) ## load package locally
+library(ggplot2)  ## load package locally
+library(ggplot2)
 
 ```
+]
 
+.pull-right[
+
+Streamlining common tasks / quality of life packages 
+  * `gtsummary` Makes it easy to render informative and polished tables.
+  * `ggplot2` Makes data visualization easier. 
+  * More on this in the demo
+]
 
 ???
 
-some vi
 
 ---
 
@@ -371,23 +412,34 @@ some vi
 
 Functions, Objects, **Packages**
 
+**don't focus on broader applicability**
+**do mention it as a plug**
+**and specifically how 
 
 .pull-left[
-The `tidyverse` refers to a collection of R packages that "share an underlying design, philosophy, grammar, and data structure." The "core tidyverse" includes 8 packages for common data types, including `ggplot` for graphics:
+```{r, eval = FALSE}
+
+install.packages("ipumsr") ## download from CRAN
+
+library(ipumsr) ## load package locally
+
+```
+
 ]
 
 .pull-right[
-*tidyverse logo*
+Adding support for complex operations - `ipumsr`
+  * Functions to support working with complex data
+    + numeric microdata with associated value labels
+    + complex household/person structure
+    + structured metadata
+  * Functions to support working with BIG DATA
+  * Functions to access ipums microdata API from R/Rstudio
+    + submit, check on, and download data extracts
 ]
 
 User Input:
-```{r, eval = FALSE}
 
-install.packages("tidyverse") ## download from CRAN
-
-library(tidyverse) ## load package locally
-
-```
 
 
 --
@@ -634,393 +686,13 @@ Resources
 
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 6. Demo: Basic data manipulation (filter, subset, tabulate)
+# Resources
 
 ```{r}
-library(dplyr)
-library(tidyr)
-data <- iris
-```
-- what to show??
-  + common operations for a NSO?
-  + filter by variable condition
-  + subset variables
-  + tabulation
-  + prop.tab to look at proportional margins/fancy tables
-  + find another out+of+the+box cross tab package
-
-+ discuss vectors vs matrices vs data.frame
-
-- Demo script
-  + read csv/excel
-  + simple operation
-    + aggregation step
-    + **note:** IPUMS data allows the user to choose how to aggregate
-    + demo group_by, summarise
-    + analogous to making a table/ dplyr::count - maintains a data.frame
-  
-  
-- no "point-and-click"...so what do you do
-  + help fiels!
-    + navigating help files
----
-
-
-# 6a select
-
-.pull-left[
-
-```{r, eval = FALSE}
-
-sub_data <- data %>% select(Species, Petal.Length, Sepal.Length)
-
-nrow(sub_data)
+## ipums logo or website banner
+# knitr::include_graphics()
 ```
 
-
-]
-
-.pull-right[
-
-
-
-```{r, echo = FALSE}
-
-sub_data <- data %>% select(Species, Petal.Length, Sepal.Length)
-
-nrow(sub_data)
-```
-
-]
-
----
-
-# 6b filter
-
-.pull-left[
-
-```{r, eval = FALSE}
-class(data$Species)
-sub_data2 <- data %>% filter(Species == "setosa")
-
-nrow(sub_data2)
-```
-
-
-]
-
-.pull-right[
-
-
-
-```{r, echo = FALSE}
-class(data$Species)
-sub_data2 <- data %>% filter(Species == "setosa")
-
-nrow(sub_data2)
-```
-
-]
-
----
-
-# 6c tabulate
-
-.pull-left[
-
-```{r, eval = FALSE}
-
-data %>% 
-  select(Species) %>% 
-  filter(Species != "setosa") %>% 
-  group_by(Species) %>% 
-  summarise(n = n())
-
-```
-
-
-]
-
-.pull-right[
-
-
-
-```{r, echo = FALSE}
-data %>% select(Species) %>% filter(Species != "setosa") %>% group_by(Species) %>% summarise(n = n())
-
-```
-
-]
-
----
-
-
-# 7 visualize
-
-.pull-left[
-
-```{r, eval = FALSE}
-
-table(data$Species, data$Sepal.Length)
-
-```
-
-
-]
-
-.pull-right[
-
-
-
-```{r, echo = FALSE}
-
-table(data$Species, data$Sepal.Length)
-
-
-```
-
-]
-
----
-
-
-# 7 visualize
-
-.pull-left[
-
-```{r, eval = FALSE}
-
-boxplot(data$Sepal.Length ~ data$Species)
-
-```
-
-
-]
-
-.pull-right[
-
-
-
-```{r, echo = FALSE}
-
-boxplot(data$Sepal.Length ~ data$Species)
-
-```
-
-]
-
----
-
-
-# 8 Scripting
-
-These steps can be put together into a `script` - your analytical cookbook that contains all the steps you, or a colleague need to reproduce research, or weave together raw data, derived tables, figures, and commentary all into a single transferable report. 
-
-
-.pull-left[
-
-```{r, eval = FALSE}
-
-
-```
-
-
-]
-
-.pull-right[
-
-
-
-```{r, echo = FALSE}
-
-
-```
-
-]
-
-
----
-
-# Overview 7
- 
-
-1. .greyed-out[Introductions]
-
-2. .greyed-out[Getting Started: R vs Rstudio]
-
-3. .greyed-out[Demo: Installation]
-
-4. .greyed-out[Demo: Navigating Rstudio]
-
-5. .greyed-out[Demo: Reading files into R/Rstudio]
-
-6. .greyed-out[Demo: Basic data manipulation (filter, subset, tabulate)]
-
-7. MAYBE: Demo: Basic data visualization (of tables? regressions?)
-
----
-
-# 7. MAYBE: Demo: Basic data visualization (of tables? regressions?)
-
- 
-- visualize table/ analysis of section 6
-  + save as png
-  
-- geom_col
-- geom_bar
-- geom_hist
-
-
----
-
-
-
-
-# 8. Advanced application: compile code in .Rmd
-
-- show compiled .Rmd
-- dont dwell on mechanics
-- output table from section 6
-- output plot from section 7
-- add commentary directly to plots/tables rather than a clunky email
-- *might be analogous to "log file" from SPSS (??)*
-
----
-
-# 9. Resources / help
-
-* download links
-* links to tutorials/vignettes
-  + R for data science
-  + Moderndive
-  
-
-For webpage
-  * links to resources
-  * datasets in multiple formats
-  * script of analysis
-
----
-
-
-# NOTES
-
-**be aware of audience** - older "beaurocrats" younger folks
-  + consider adding in breaks for questions
-  
-
-1. Generate synthetic dataset using malaysian 2010? 2000?
-  + subset down to a small sample size and variables
-  
-1. spots for interaction
-  + if you learned something new, give a thumbs up in the chat
-
-1. update official name
-  + edatain by sex
-  + empstat by sex
-
-1. where to go for help 
-
-1. What are the 3 key takeaways??
-  + how to install
-  + where to go for resources
-
-1. Good practices in tidy code/code management / literate programming
-  + reuseable code
-  + legible code
-  + rmd for documentation
-  + rmd for reproducibility
-
-1. Working with IPUMS data can be one example, but shouldn't be the only focus. 
-  + Show how to read in other data file types. 
-  + Don't need to focus on working with IPUMS value labels or IPUMS-specific topics like that.
-1. 45 mins for presentation
-
-1. Consider highlighting `sink` function - does this parallel stata operations?
-  + can we better parallel stata operations in our demo
-
-1. **MAYBE** have a streamline demo/workflow that builds to loading, manipulate, save
-1. **THEN** have a section on "tips and tricks"
-  + possibly tie in "help section" to talk of libraries 
-  + as a way to explore the functions within the R package
-  
-  
----
-# MAYBE
-
-
-- csv
-- IPUMS style
-- spss style?
-  + can haven do STATA, SAS and SPSS
-- check [dosm website](https://www.dosm.gov.my/v1/index.php?r=column3/accordion&menu_id=aHhRYUpWS3B4VXlYaVBOeUF0WFpWUT09) for data.
-  
-- Demo script
-  + read csv
-  + OR read excel
-    + discuss vectors vs matrices vs data.frame
-
-- connect to external db ?
-  + db connect
-  + coneection <- dbconnect::dbconnect("filepath")
-
-  
----
-
-# To Do
-
-1. Download malaysia dataset*
-1. generate synthetic data
-  + check parameters
-1. Save synth data as
-  + .csv
-  + xlsx
-  + stata
-  + spss
-1. generate resources list
-  + common functions in R
-  + tidyerse cheatsheets
-
-apropos
-help.search
-
----
-    
-# QUESTIONS FOR GROUP
-
-
-
-1. What is a good dataset to use / demo
-  + is there a specific dataset /analysis someone else will be using elsewhere in the workshop?
-  + does Malaysia have publicly available data
-
-1. what in addition to IPUMS data might they be interested in?
-  + API support, ipums API, DHS API
-  + are database connections expected to be relevant
-  + Are .fwf expected formats? should we go into detail on that
-  + other datasets/ data types to tie in?
-    + reference working with GIS data?
+* link to webpage
 
 ---
