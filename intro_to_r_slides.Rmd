@@ -538,7 +538,7 @@ knitr::include_graphics("images/rstudio_install2.png")
 
 
 ???
-  + **NOTE:** Might require admin privelages
+  + **NOTE:** Might require admin privileges
   
 ---
 # Overview 4
@@ -584,7 +584,7 @@ Demo: Navigation (Rstudio)
     + built in R datasets
     
     
-  + reference this as analagous to a "do-file" in spss
+  + reference this as analagous to a "do-file" in stata and "syntax file" in spss
   + same code
   + creating scripts/processes
 - loading packages 
@@ -616,6 +616,32 @@ Demo: Working with .R scripts
 
 .greyed-out[Resources]
 
+
+---
+
+# Plotting example
+
+.pull-left[
+### Base R
+```{r, eval = TRUE, echo = TRUE}
+
+my_data
+
+```
+]
+
+.pull-right[
+### ggplot
+```{r, eval = TRUE, echo = TRUE}
+
+my_data
+
+```
+]
+
+---
+
+# Table example
 
 ---
 
