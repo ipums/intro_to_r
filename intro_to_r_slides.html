@@ -4,6 +4,7 @@
     <title>Introduction and exposure to   R and Rstudio</title>
     <meta charset="utf-8" />
     <meta name="author" content="IPUMS International" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
@@ -11,10 +12,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction and exposure to <br/> R and Rstudio
+]
+.author[
 ### IPUMS International
-### Malaysia Workshop
+]
+.institute[
+### Workshop on <br/> Harnessing Opportunities Towards Resilient Future <br/> Through Census Data
+]
+.date[
 ### July 27th 2022
+]
 
 ---
 
@@ -32,98 +41,87 @@ class: center, middle, inverse, title-slide
 
 
 ---
-
-
 # Overview 0
 
+Introduction
+  What is R
+  Why use R
+  Key Terms
 
-Introductions
-
---
-
-Key Concepts
-
---
-
-Installation
 
 --
+Getting Started
+  Installation
+  Rstudio Navigation (Live Demo)
+  Coding in R/Rstudio (Live Demo)
 
-Demo: Navigation (Rstudio)
-
---
-
-Demo: Working with .R scripts
-
---
-Demo: Working with .Rmd reports
 
 --
+Common Applications
+  Read in data
+  Manipulate Data
+  Visualize Data
+  
+--
+Reporting in R
+  Scripts vs Rmd
 
+--
 Q&amp;A
+  Ask in Chat?
+  Pass to Moderator for End?
 
---
 
+--  
 Resources
 
 
 
 ---
-
 # Overview 1
 
 
-Introductions
+.greyed-out[]
 
-.greyed-out[Key Concepts]
-
-.greyed-out[Installation]
-
-.greyed-out[Demo: Navigation (Rstudio)]
-
-.greyed-out[Demo: Working with .R scripts]
-
-.greyed-out[Demo: Working with .Rmd reports]
-
-.greyed-out[Q&amp;A]
-
-.greyed-out[Resources]
-
----
+Introduction
+  What is R
+  Why use R
+  Key Terms
 
 
-# 1. Introductions
+Getting Started
+  Installation
+  Rstudio Navigation (Live Demo)
+  Coding in R/Rstudio (Live Demo)
 
 
----
+Common Applications
+  Read in data
+  Manipulate Data
+  Visualize Data
+  
+  
+Reporting in R
+  Scripts vs Rmd
 
-# Overview 2
+
+Q&amp;A
 
 
-.greyed-out[Introductions]
-
-Key Concepts
-
-.greyed-out[Installation]
-
-.greyed-out[Demo: Navigation (Rstudio)]
-
-.greyed-out[Demo: Working with .R scripts]
-
-.greyed-out[Demo: Working with .Rmd reports]
-
-.greyed-out[Q&amp;A]
-
-.greyed-out[Resources]
+Resources
 
 ---
+# 1. Introduction
 
+
+---
 # What is R ???
 
 A language and environment for statistical computing
 
 Effectively: R is a stats package, like stata/spss/sas
 
+---
 # Why use R ???
 
 * free and open-source
@@ -181,24 +179,18 @@ Clicks vs Code
 
 
 ---
+# Key Terms - **Functions**, Objects, Packages
 
-
-# Key terms/Concepts
-
-
-**Functions**, Objects, Packages
-
-To read data into R, we use the `read.csv()` **function**.
-
+To read data into R, we can use the `read.csv()` **function**.
 * **Functions** end in parentheses
-* **Functions** take various **arguments** within their parentheses * **Functions** perform actions/operations
+* **Functions** take various **arguments** within their parentheses as **input**.
+* **Functions** perform actions/operations on the inputs and usually return **output**.
+--
 
-* **Functions** take `inputs` and return `outputs`.
 
-  Here the input is the filepath, `"example_data.csv"` specified as the `file=`  **argument** of the `read.csv` **function**. 
+The `read.csv()` **function** takes the `file=`  **argument** as **input**. Below, we *pass* the filepath `"example_data.csv"`as the **argument** to the **function** 
 
 .pull-left[
-
 User Input:
 
 ```r
@@ -208,7 +200,6 @@ read.csv(file="example_data.csv")
 ]
 
 .pull-right[
-
 R output:
 
 ```
@@ -5215,7 +5206,21 @@ R output:
 ## 5000   2        2       4  56
 ```
 
+![](images/print_csv_1.png)&lt;!-- --&gt;
+
+
+`...`
+
+
+
+```r
+knitr::include_graphics("images/print_csv_2.png")
+```
+
+![](images/print_csv_2.png)&lt;!-- --&gt;
 ]
+
+ 
 
 ???
 
@@ -5224,13 +5229,13 @@ Here we can (probably) see our data has been read in and printed...probably not 
 ---
 
 
-# Key terms/Concepts
+# Key Terms
 
 
 Functions, **Objects**, Packages
 
 
-Technically, `read.csv()` returns a `data.frame`
+Technically the **output** of `read.csv()` is a `data.frame`
   + `data.frame`s are like spreadsheets, with data organized into rows and columns.
   
 Instead of printing the contents of `"example_data.csv"`, we want save that information to an **R object**. 
@@ -5244,13 +5249,14 @@ To create an **R object**, use the `&lt;-` command to **assign** the contents of
 ---
 
 
-# Key terms/Concepts
+# Key Terms
 
 
 Functions, **Objects**, Packages
 
 Now that `my_data` is stored as an **R object**, we can use **functions** to interact with it.
   * To type the assignment operator, use `[less than]``[minus sign]`
+  * In some cases, like when only one argument is needed, the argument name does not need to be specified
 
 
 .pull-left[
@@ -5259,8 +5265,8 @@ User Input:
 
 ```r
 
-my_data &lt;- read.csv("example_data.csv")
-# View(my_data)
+my_data &lt;- read.csv(file = "example_data.csv")
+View(my_data)
 ```
 
 ]
@@ -5268,7 +5274,7 @@ my_data &lt;- read.csv("example_data.csv")
 .pull-right[
 
 R output:
-
+![](images/view_data.png)&lt;!-- --&gt;
 
 ]
 
@@ -5281,11 +5287,13 @@ R output:
 
 
 
-# Key terms/Concepts
+# Key Terms
 
-Some functions work on `matrices` or `data.tables`, while others are meant for single columns or `vectors`.
+The **output** of `read.csv()` is a `data.frame`.
+  + Like a spreadsheet, `data.frames` organize data by rows and columns.
 
-Data **Objects** with named elements (like columns) can be accessed using `$`
+Some functions work `data.tables`, while others are meant for single columns or `vectors`.
+  + Specify a column name using `$`
 
 .pull-left[
 
@@ -5305,15 +5313,7 @@ summary(my_data$AGE)
 .pull-right[
 
 R output:
-
-```
-## [1] 5000
-## [1] 4
-## [1] "SEX"      "EDATTAIN" "EMPSTAT"  "AGE"
-## [1] 26.3646
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00   11.00   23.00   26.36   39.00   99.00
-```
+![](images/functions_on_objects.png)&lt;!-- --&gt;
 
 ]
 
@@ -5321,7 +5321,7 @@ R output:
 ---
 
 
-# Key terms/Concepts
+# Key Terms
 
 
 Functions, Objects, **Packages**
@@ -5330,16 +5330,27 @@ Functions, Objects, **Packages**
 
 **base R** refers to the "starter set" of packages users get when they "download R".
 
+  + Using **base R** users *could* write code to accomplish *nearly* anything they want to
 --
+  + Takes time and effort to code
+  + *Can't someone else do it??*
 
-Using **base R** users *could* write code to accomplish *nearly* anything they want to...but it might take time
+---
 
---
+Functions, Objects, **Packages**
 
 The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts &gt; 18k Contributed Packages that expand the capabilities of R.
   + Add support for specific/obscure programs or file types
   + Streamline common tasks, data wrangling/visualization
   + Bundle complex analysis/operations into simple, user friendly functions
+
+--
+
+**Don't be intimidated!**
+
+* Packages provide high level of *customization*, allowing the user to fine-tune thier R experience
+* Data management, Analysis, Visualization, Reporting all in one program
+* See [Resource List]() for our recommendations of common/helpful R packages for working with census/survey data. 
 
 
 ???
@@ -5350,23 +5361,25 @@ While openxlsx is geared towards interacting with a specific filetype, other pac
 
 ---
 
-# Key terms/Concepts
+# Key Terms
 
 Functions, Objects, **Packages**
 
-While base R does not have support to read .xlsx files, we can get the `openxlsx` package like so:
-
+While base R does not have support to read .xlsx files, `openxlsx` provides read/write support.
 
 
 ```r
 
 install.packages("openxlsx") ## download from CRAN
-
 library(openxlsx) ## load package locally
 
 my_data &lt;- read.xlsx("example_data.xlsx")
+write.xlsx(my_data,file =  "example_data.xlsx")
 
-write.xlsx(my_data, "example_data.xlsx")
+install.packages("haven")
+librarry(haven)
+
+my_data &lt;- haven::read_dta(file = "example_data.dta") ## STATA
 
 ```
 
@@ -5374,9 +5387,41 @@ write.xlsx(my_data, "example_data.xlsx")
 * `install.packages()` needs to be done only once - or periodically to update. 
 * `library()` needs to called each time you open R (to access that package)
 
+??
+
+Example of a package that interacts with a specific program
+
 ---
 
-# Key terms/Concepts
+Functions, Objects, **Packages**
+
+For interacting with other stats packages (eg, STATA, SPSS, SAS), we reccomend the `haven` package.
+
+.pull-left[
+
+```r
+install.packages("haven")
+library(haven)
+
+read_stata()
+read_dta()
+
+read_sas()
+read_xpt()
+
+read_spss()
+read_por()
+read_sav()
+```
+]
+.pull-right[
+In addition to supporting many filetypes, `haven` supports labeled values
+  + More on this in the demo
+]
+
+---
+
+# Key Terms
 
 Functions, Objects, **Packages**
 
@@ -5389,7 +5434,7 @@ Functions, Objects, **Packages**
 install.packages("gtsummary") ## download from CRAN
 install.packages("ggplot2") 
 
-library(ggplot2)  ## load package locally
+library(gtsummary)  ## load package locally
 library(ggplot2)
 
 ```
@@ -5408,14 +5453,12 @@ Streamlining common tasks / quality of life packages
 
 ---
 
-# Key terms/Concepts
+# Key Terms
 
 
 Functions, Objects, **Packages**
 
-**don't focus on broader applicability**
-**do mention it as a plug**
-**and specifically how 
+Adding support for complex operations - `ipumsr`
 
 .pull-left[
 
@@ -5430,45 +5473,124 @@ library(ipumsr) ## load package locally
 ]
 
 .pull-right[
-Adding support for complex operations - `ipumsr`
-  * Functions to support working with complex data
-    + numeric microdata with associated value labels
-    + complex household/person structure
-    + structured metadata
-  * Functions to support working with BIG DATA
-  * Functions to access ipums microdata API from R/Rstudio
-    + submit, check on, and download data extracts
+  * Developed in-house functions for working with extensive metadata
+    + Took advantage of structured and standardized data
+    + DDI standard, plus IPUMS-specific fields
+  * Released on CRAN in **2013???** for IPUMS users to benefit
+    + **Newly added** API support for the IPUMS microdata extract system.
 ]
 
-User Input:
 
 
-
---
-
-**Don't be intimidated!**
-
-* Packages provide high level of *customization*
-* Data management, Analysis, Visualization, Reporting all in one program
-* See [Resource List]() for our recommendations of common/helpful R packages for working with census/survey data. 
 
 ???
+
+
+---
+
+# Key Terms
+
+Review
+
+* Functions
+
+
+* Objects
+
+
+* Packages
 
 
 
 ---
 
-# Key terms/concepts
+# Key Terms
 
 Review
 
-* R vs Rstudio
-* Click vs Code
 * Functions
+  + *Do* things in R
+  
 * Objects
+
+
+
 * Packages
 
 
+---
+
+# Key Terms
+
+Review
+
+* Functions
+  + *Do* things in R
+  
+* Objects
+  + *Are* things in R
+
+* Packages
+
+---
+
+# Key Terms
+
+Review
+
+* Functions
+  + *Do* things in R
+  
+* Objects
+  + *Are* things in R
+
+* Packages
+  + **Contain** things in R
+
+
+---
+
+
+# Overview 2
+
+.greyed-out[
+
+Introduction
+
+  What is R
+  
+  Why use R
+  
+  Key Terms ]
+
+Getting Started
+  
+  Installation
+  
+  Rstudio Navigation (Live Demo)
+  
+  Coding in R/Rstudio (Live Demo)
+.greyed-out[
+Common Applications
+
+  Read in data
+  
+  Manipulate Data
+  
+  Visualize Data
+  
+Reporting in R
+
+  Scripts vs Rmd
+
+Q&amp;A
+
+Resources
+]
+
+---
+
+# Getting Started
 --
 
 How do I get it?!?
@@ -5478,29 +5600,7 @@ How do I get it?!?
 now that you've learned some fundamentals, we'll go over:
 * installation R/Rstudio
 * basic setup and navigation.
-* Review key terms/concepts in action
-
----
-
-
-# Overview 3
-
-
-.greyed-out[Introductions]
-
-.greyed-out[Key Concepts]
-
-Installation
-
-.greyed-out[Demo: Navigation (Rstudio)]
-
-.greyed-out[Demo: Working with .R scripts]
-
-.greyed-out[Demo: Working with .Rmd reports]
-
-.greyed-out[Q&amp;A]
-
-.greyed-out[Resources]
+* Review Key Terms in action
 
 ---
 
@@ -5509,7 +5609,7 @@ Installation
 
 https://cran.r-project.org/
 
-&lt;img src="images/r_install_1.png" title="A screenshot of download links on cran.r-project.org" alt="A screenshot of download links on cran.r-project.org" width="2559" /&gt;
+&lt;img src="images/r_install_1.png" title="A screenshot of download links on cran.r-project.org" alt="A screenshot of download links on cran.r-project.org"  /&gt;
 
   
 + https://cran.r-project.orgbin/windows/base/
@@ -5528,7 +5628,7 @@ Don't go too quickly on this
 
 https://www.rstudio.com/
 
-&lt;img src="images/rstudio_install2.png" title="A screenshot of download links on cran.r-project.org" alt="A screenshot of download links on cran.r-project.org" width="2560" /&gt;
+&lt;img src="images/rstudio_install2.png" title="A screenshot of download links on cran.r-project.org" alt="A screenshot of download links on cran.r-project.org"  /&gt;
 
   + https://www.rstudio.com/products/rstudio/download/
   + https://www.rstudio.com/products/rstudio/download-server/
@@ -5539,30 +5639,9 @@ https://www.rstudio.com/
   + **NOTE:** Might require admin privelages
   
 ---
-# Overview 4
 
+# Demo: Rstudio Navigation
 
-Review/reorient functions shown
-
-.greyed-out[Introductions]
-
-.greyed-out[Key Concepts]
-
-.greyed-out[Installation]
-
-Demo: Navigation (Rstudio)
-
-.greyed-out[Demo: Working with .R scripts]
-
-.greyed-out[Demo: Working with .Rmd reports]
-
-.greyed-out[Q&amp;A]
-
-.greyed-out[Resources]
-
----
-
-# Demo: Navigating Rstudio
 
 ???
 
@@ -5591,95 +5670,123 @@ Demo: Navigation (Rstudio)
   + consistent syntax
   + data.frame centric - takes some of the confusion out of using R
 
-
----
-# Overview 5
-
-
-
-
-.greyed-out[Introductions]
-
-.greyed-out[Key Concepts]
-
-.greyed-out[Installation]
-
-.greyed-out[Demo: Navigation (Rstudio)]
-
-Demo: Working with .R scripts
-
-.greyed-out[Demo: Working with .Rmd reports]
-
-.greyed-out[Q&amp;A]
-
-.greyed-out[Resources]
-
-
 ---
 
-# Overview 6
-
-
-
-.greyed-out[Introductions]
-
-.greyed-out[Key Concepts]
-
-.greyed-out[Installation]
-
-.greyed-out[Demo: Navigation (Rstudio)]
-
-.greyed-out[Demo: Working with .R scripts]
-
-Demo: Working with .Rmd reports
-
-.greyed-out[Q&amp;A]
-
-.greyed-out[Resources]
+# Demo: Coding in R/Rstudio
 
 ---
+# Overview 3
 
+.greyed-out[
 
-# Overview 7
+Introduction
 
+  What is R
+  
+  Why use R
+  
+  Key Terms
 
+Getting Started
+  
+  Installation
+  
+  Rstudio Navigation (Live Demo)
+  
+  Coding in R/Rstudio (Live Demo)]
 
-.greyed-out[Introductions]
+Common Applications
 
-.greyed-out[Key Concepts]
+  Read in data
+  
+  Manipulate Data
+  
+  Visualize Data
+.greyed-out[  
+Reporting in R
 
-.greyed-out[Installation]
-
-.greyed-out[Demo: Navigation (Rstudio)]
-
-.greyed-out[Demo: Working with .R scripts]
-
-.greyed-out[Demo: Working with .Rmd reports]
+  Scripts vs Rmd
 
 Q&amp;A
 
-.greyed-out[Resources]
+Resources
+]
 
 ---
 
-# Overview 8
+# Overview 4
 
+.greyed-out[
 
+Introduction
 
-.greyed-out[Introductions]
+  What is R
+  
+  Why use R
+  
+  Key Terms
 
-.greyed-out[Key Concepts]
+Getting Started
+  
+  Installation
+  
+  Rstudio Navigation (Live Demo)
+  
+  Coding in R/Rstudio (Live Demo)
 
-.greyed-out[Installation]
+Common Applications
 
-.greyed-out[Demo: Navigation (Rstudio)]
+  Read in data
+  
+  Manipulate Data
+  
+  Visualize Data]
+  
+Reporting in R
 
-.greyed-out[Demo: Working with .R scripts]
+  Scripts vs Rmd
+.greyed-out[
+Q&amp;A
 
-.greyed-out[Demo: Working with .Rmd reports]
+Resources
+]
 
-.greyed-out[Q&amp;A]
+---
 
+# Overview 5
+
+.greyed-out[
+
+Introduction
+
+  What is R
+  
+  Why use R
+  
+  Key Terms
+
+Getting Started
+  
+  Installation
+  
+  Rstudio Navigation (Live Demo)
+  
+  Coding in R/Rstudio (Live Demo)
+
+Common Applications
+
+  Read in data
+  
+  Manipulate Data
+  
+  Visualize Data]
+  
+Reporting in R
+
+  Scripts vs Rmd
+
+Q&amp;A
+]
 Resources
 
 ---
@@ -5742,6 +5849,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

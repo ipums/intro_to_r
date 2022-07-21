@@ -629,7 +629,7 @@ knitr::include_graphics("images/rstudio_install2.png")
 
 
 ???
-  + **NOTE:** Might require admin privelages
+  + **NOTE:** Might require admin privileges
   
 ---
 
@@ -654,7 +654,7 @@ knitr::include_graphics("images/rstudio_install2.png")
     + built in R datasets
     
     
-  + reference this as analagous to a "do-file" in spss
+  + reference this as analagous to a "do-file" in stata and "syntax file" in spss
   + same code
   + creating scripts/processes
 - loading packages 
@@ -670,7 +670,39 @@ knitr::include_graphics("images/rstudio_install2.png")
 ---
 # Overview 3
 
+<<<<<<< HEAD
 .greyed-out[
+=======
+# Plotting example
+
+.pull-left[
+### Base R
+```{r, eval = TRUE, echo = TRUE}
+
+my_data
+
+```
+]
+
+.pull-right[
+### ggplot
+```{r, eval = TRUE, echo = TRUE}
+
+my_data
+
+```
+]
+
+---
+
+# Table example
+
+---
+
+# Overview 6
+
+
+>>>>>>> 123ceaaf63a2b6ea210ff4356e8824515a57165e
 
 Introduction
 
