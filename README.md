@@ -13,13 +13,19 @@ Malaysia, July 27, 2022.
 
 To use the example code in this repository, we recommend opening RStudio
 and using the menu at the top of the window to navigate to *File \> New
-Project \> Version Control \> Git*. In the “Repository URL” field, paste
-the URL for this repository (<https://github.com/ipums/intro_to_r>).
+Project \> Version Control \> Git*.
+
+In the “Repository URL” field, paste the URL for this repository
+(<https://github.com/ipums/intro_to_r>).
+
 Note the location specified in the “Create project as subdirectory of:”
-field, and change it as necessary. Then, click the Create Project
-button. This will create a new folder for your project, download all the
-files in this repository into that folder, and open the project in
-RStudio. From there, you can open the files “example_script.R” or
+field, and change it as necessary.
+
+Next, click the Create Project button. This will create a new folder for
+your project, download all the files in this repository into that
+folder, and open the project in RStudio.
+
+From there, you can open the files “example_script.R” or
 “example_script.Rmd” to test out example R code related to the
 presentation.
 
