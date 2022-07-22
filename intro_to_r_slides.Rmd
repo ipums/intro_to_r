@@ -133,15 +133,15 @@ class: center
 
 .pull-left[
 ### Statistical Software Package
-```{r echo = FALSE, out.width = "50%", fig.align = "center"}
+```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.alt = "Stata logo"}
 knitr::include_graphics("images/stata-logo.png")
 ```
 
-```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+```{r echo = FALSE, out.width = "40%", fig.align = "center", fig.alt = "SPSS logo"}
 knitr::include_graphics("images/spss-logo.png")
 ```
 
-```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+```{r echo = FALSE, out.width = "40%", fig.align = "center", fig.alt = "SAS logo"}
 knitr::include_graphics("images/sas-logo.png")
 ```
 
@@ -152,7 +152,7 @@ knitr::include_graphics("images/sas-logo.png")
 .pull-right[
 ### Programming Language
 
-```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+```{r echo = FALSE, out.width = "40%", fig.align = "center", fig.alt = "Python logo"}
 knitr::include_graphics("images/python-logo.png")
 ```
 
@@ -176,7 +176,7 @@ class: center
 
 ### Statistical Software Package + Programming Language
 
-```{r echo = FALSE, out.width = "60%", fig.align = "center"}
+```{r echo = FALSE, out.width = "60%", fig.align = "center", fig.alt = "R logo"}
 knitr::include_graphics("images/r-logo.svg")
 ```
 
@@ -192,7 +192,7 @@ created using R!
 
 # Point-and-click vs. Code  
 
-```{r echo = FALSE, out.width = "100%"}
+```{r echo = FALSE, out.width = "100%", fig.alt = "Brief screen recording of a mouse pointer clicking through the menu interface in Stata"}
 knitr::include_graphics("images/stata-menu-interface.gif")
 ```
 
@@ -208,7 +208,7 @@ menu interface for common operations...
 
 # Point-and-click vs. Code
 
-```{r echo = FALSE, out.width = "80%", fig.align = "center"}
+```{r echo = FALSE, out.width = "80%", fig.align = "center", fig.alt = "Brief screen recording of typing the command `table(mtcars$cyl, mtcars$gear)` into the RStudio console and printing a crosstabulation of those two variables."}
 knitr::include_graphics("images/r-table-screen-recording.gif")
 ```
 
@@ -570,7 +570,7 @@ library(ipumsr) ## load package locally
   * Developed in-house functions for working with extensive metadata
     + Took advantage of structured and standardized data
     + DDI standard, plus IPUMS-specific fields
-  * Released on CRAN in **2013???** for IPUMS users to benefit
+  * Released on CRAN in 2017
     + **Newly added** API support for the IPUMS microdata extract system.
 ]
 
@@ -698,19 +698,33 @@ now that you've learned some fundamentals, we'll go over:
 
 ---
 
+class: center
+
 # R vs. RStudio
 
 --
 
 .pull-left[
-```{r}
+## R
+```{r echo = FALSE, fig.alt = "Image of a car engine"}
 knitr::include_graphics("images/r-as-engine.jpg")
 ```
 ]
 
+.pull-right[
+## RStudio
+```{r echo = FALSE, fig.alt = "Image of a blue sports car"}
+knitr::include_graphics("images/rstudio-as-sports-car.webp")
+```
+]
 
-- You need R to use RStudio
-- RStudio makes it easier and more fun to use R
+--
+
+.pull-left[You need R to use RStudio]
+
+--
+
+.pull-right[RStudio makes it easier and more fun to use R]
 
 ???
 We recommend installing both R and RStudio. The distinction between these two 
