@@ -826,3 +826,16 @@ Resources
 * link to webpage
 
 ---
+
+
+# NOTES 
+
+Can you highlight the "<-" command so it stands out that it is the command
+
+Maybe animate and bring in line by line as you discuss? (since it's a lot of text) animate some, cut down,
+
+Can you highlight or enlarge the symbol (etc.) that you are defining?
+From Sula Sarkar to Everyone 03:11 PM
+"#" and labels on the end
+cut off on the bottom
+

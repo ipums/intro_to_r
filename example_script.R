@@ -185,4 +185,8 @@ ggplot(data = sub_data, aes(x = SEX, fill = EMPSTAT)) +
   geom_bar()
 
 
+#### NTOES ####
+
+# look at edattain rather than employment to parrallel geog
+
 
