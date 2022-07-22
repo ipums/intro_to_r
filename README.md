@@ -36,4 +36,6 @@ and choosing “Download ZIP”.
 The main files of interest to workshop participants are
 “example_script.R” and “example_script.Rmd”. If you want to see the R
 source code for the presentation itself, you can find that in
-“intro_to_r\_slides.Rmd”.
+“intro_to_r\_slides.Rmd”. To see the result of rendering
+“example_script.Rmd” to HTML, visit
+<https://tech.popdata.org/intro_to_r/>.
