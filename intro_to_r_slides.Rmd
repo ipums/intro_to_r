@@ -12,6 +12,22 @@ output:
       countIncrementalSlides: false
 ---
 
+layout: true
+
+background-image: url(images/ipums-banner.png)
+background-position: 40% 98%
+background-size: 140%
+
+<style>
+.remark-slide-number {
+  font-size: 20pt;
+  margin-bottom: 30px;
+  margin-right: 10px;
+  color: #000000; /* black */
+  opacity: 0.0; /* default: 0.5 */
+}
+</style>
+
 
 ```{r setup, include=FALSE}
 
@@ -108,68 +124,157 @@ Resources
 
 
 ---
-# What is R ???
 
-A language and environment for statistical computing
+class: center
 
-Effectively: R is a stats package, like stata/spss/sas
-
----
-# Why use R ???
-
-* free and open-source
-* data management/manipulation/visualization all in 1 program
-* IPUMS and many other organizations already use R for census/survey data - Large community support!
+# What is R?
 
 --
 
-* endlessly customizable  
-  
+.pull-left[
+### Statistical Software Package
+```{r echo = FALSE, out.width = "50%", fig.align = "center"}
+knitr::include_graphics("images/stata-logo.png")
+```
 
-  
----
+```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+knitr::include_graphics("images/spss-logo.png")
+```
 
-# rework into previous
+```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+knitr::include_graphics("images/sas-logo.png")
+```
 
-
-R vs Rstudio
+]
 
 --
 
-- R is the engine, Rstudio is the car
+.pull-right[
+### Programming Language
 
-- Rstudio is a GUI that makes it easier to interact with R
+```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+knitr::include_graphics("images/python-logo.png")
+```
+
+]
 
 ???
+Like statistical software packages, such as Stata, SPSS, and SAS, R has built-in
+functionality for statistical analysis.
 
-Any R users currently - raise hands
-Rstudio facilitates work in R by creating **Rprojects**
-varying scopes of projects - user decision, we use a separate project for each country
+Like programming languages, such as Python, R is designed to facilitate the 
+creation of user-contributed functions and packages to perform a variety of 
+computing tasks, including data management, exploration, analysis, and 
+reporting.
+
+---
+
+class: center
+
+# What is R?
+
+
+### Statistical Software Package + Programming Language
+
+```{r echo = FALSE, out.width = "60%", fig.align = "center"}
+knitr::include_graphics("images/r-logo.svg")
+```
+
+
+???
+In other words, R combines the statistical capabilities of a stats package with 
+the flexibility of a more general purpose programming language.
+
+One example of R's flexibility: The slides we're looking at right now were
+created using R!
+
+---
+
+# Point-and-click vs. Code  
+
+```{r echo = FALSE, out.width = "100%"}
+knitr::include_graphics("images/stata-menu-interface.gif")
+```
+
+???
+Because R is a stats package *and* a programming language, the experience of 
+learning R is a bit different from other stats packages.
+
+Whereas some other stats packages like Stata and SPSS offer a point-and-click 
+menu interface for common operations...
 
 
 ---
 
-# rework into previous
+# Point-and-click vs. Code
+
+```{r echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("images/r-table-screen-recording.gif")
+```
 
 
-Clicks vs Code
+???
+Learning R typically involves learning to write R code from the very beginning. 
+
+This contributes to a slightly steeper initial learning curve for R compared to 
+other stats packages, but the medium- and long-term benefits of managing and 
+analyzing your data with code far outweigh this short term cost.
+
+
+---
+
+# Why use R?
 
 --
 
-- Many stats/spreadsheet software are specialized to perform  a relatively small amount of common statistical functions. These programs tend to provide user-friendly buttons and drop down menus allowing users to **click around** in order to achieve their goals.
-  + These programs make MANY assumptions about what input data might look like and limit the options a user has to click from.
-
+* Flexibility
 
 --
 
-- R is a **programming language**. Rather than clicking buttons, users must write, or **code**, the operations they want to perform. 
-  + More of a learning curve than other programs
-  + R makes virtually no assumptions about the input data or steps of a script
-  + Can use R for data management, including meta-data, and analysis
-  + *maybe reference IPUMS/ IPUMS metadata*
-    + use IPUMSR as a case study of how greg expanded functionality to easily read/write our unique structured data
+* Cutting-edge and trustworthy statistical methods
+
+--
+
+* Open source
+
+--
+
+* Large, active, friendly user community
+
+--
+
+* Free!
 
 
+
+???
+That leads us right into our next question: Why do we think you should use R?
+
+First, because R is a fully-realized programming language, it provides 
+flexibility to complete a variety of tasks, including but not limited to data 
+management, analysis, visualization, and reporting. Thus, the initial 
+investment in learning R has a big payoff in potential use cases.
+
+Secondly, R is the language of choice for most academic statisticians, so new 
+statistical techniques are often available in R before they come to other stats 
+packages. For example, and particularly relevant in the context of census data, 
+many leading researchers in statistical disclosure control create R packages to 
+implement their techniques.
+
+Because of this close connection with academic statistics, you can also trust 
+the soundness of the statistical techniques implemented in R. Often, researchers 
+will publish descriptions of new packages in the peer-reviewed Journal of 
+Statistical Software. 
+
+Moreover, both R and contributed R packages are open source, and most functions
+in R are written in ordinary R code, so the community of R users can review the
+implementation of particular techniques, fix bugs and errors, or adapt code for 
+new purposes.
+
+Speaking of the community, R has a large, active, and friendly user community 
+that is constantly working to improve R and creating resources for learning R.
+
+Finally, in contrast to most other stats packages, R is free!
 
 ---
 # Key Terms - **Functions**, Objects, Packages
@@ -590,6 +695,33 @@ now that you've learned some fundamentals, we'll go over:
 * installation R/Rstudio
 * basic setup and navigation.
 * Review Key Terms in action
+
+---
+
+# R vs. RStudio
+
+--
+
+.pull-left[
+```{r}
+knitr::include_graphics("images/r-as-engine.jpg")
+```
+]
+
+
+- You need R to use RStudio
+- RStudio makes it easier and more fun to use R
+
+???
+We recommend installing both R and RStudio. The distinction between these two 
+can be confusing at first, but one way to think of it is that R is the engine, 
+and RStudio is the fancy sports car powered by the engine.
+
+In other words, you need R to use RStudio, and RStudio makes it easier and more 
+fun to use R
+
+Any R users currently - raise hands
+
 
 ---
 
