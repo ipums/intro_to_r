@@ -474,6 +474,7 @@ library(ipumsr) ## load package locally
 
 ???
 
+* Because IPUMS takes the time and effort to build highly structured and organized metadata, we are able to take advantage of statistical programming to build complex functions
 
 ---
 
