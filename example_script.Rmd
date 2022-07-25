@@ -1,21 +1,17 @@
 ---
 title: "Example Rmd"
-author: "ipumsi"
+author: "IPUMS International"
 date: 'July 27th 2022'
 output: 
   html_document:
     code_folding: show
+    toc: true
+    toc_float: true
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 
 ## Read in my_data (.csv)
 
-Base R can handle .csv and .txt files "out of the box", but these can have limitations. **Note:** With Rmd, comments/text do not require the "#" comment symbol. Instead we specificy where the `code` will go using "code chunks", as below. 
+Base R can handle .csv and .txt files "out of the box", but these can have limitations. **Note:** With Rmd, comments/text do not require the "#" comment symbol. Instead we specify where the `code` will go using "code chunks", as below. 
 
 ```{r}
 
@@ -27,12 +23,14 @@ table(my_data$EDATTAIN)
 table(my_data$EMPSTAT)
 ```
 
-
 To read in different file types, we will need to download R packages. 
+
 
 ## Install Packages
 
-R packages are add-ons that expand the functionality of base R. Its helpful  to think of R as a series of books. "Base R" is the starter set of "books" needed for R to function. install.packages() downloads new the "book" and adds it to your collection. This step needs to be done only once, or periodically to update. Note: quotation marks ("") ARE REQUIRED to specify a package name. openxlsx is a very useful package that allows read/write of xls/xlsx files. haven provides functions to read from various stats packages, including SPSS, STATA, and SAS. Notably, haven is able to read in value and value labels
+R packages are add-ons that expand the functionality of base R. Its helpful to think of R as a series of books. "Base R" is the starter set of "books" you get when you first install R. install.packages() downloads a new "book" and adds it to your collection. This step needs to be done only once, or periodically to update. 
+
+Note: quotation marks ("") ARE REQUIRED to specify a package name. 
 
 ```{r}
 if(!require("openxlsx")) {
@@ -42,63 +40,30 @@ if(!require("openxlsx")) {
 if (!(require("haven"))) {
   install.packages("haven")
 }
+
+if(!require("ggplot2")) {
+  install.packages("ggplot2")
+}
+
+if (!(require("gtsummary"))) {
+  install.packages("gtsummary")
+}
 ```
+
+openxlsx provides functions to read and write Microsoft Excel files. 
+
+haven provides functions to read from various stats packages, including SPSS, Stata, and SAS. Notably, haven is able to read in values and value labels.
+
+ggplot2 streamlines the creation of plots to visualize your data.
+
+gtsummary streamlines the creation of tables to summarize your data.
+
 
 ## Load Packages
 
-In order to load the package, we use library(). This is like taking the book off your shelf and opening it to read/use. This step needs to be done each time you open R/Rstudio. so it's helpful to have a section at the top of the script that loads all packages needed. Note: quotation marks ("") are NOT required for the library function.
+In order to load the package, we use library(). This is like taking the book off your shelf and opening it to read/use. This step needs to be done each time you open R/RStudio, so it's helpful to have a section at the top of the script that loads all packages needed. 
 
-```{r}
-library(haven)
-library(openxlsx)
-```
-
-## Read in my_data (.xlsx)
-
-
-
-# Read in my_data (.csv) 
-
-Base R can handle .csv and .txt files "out of the box"
-
-Without assigning to an object, contents of file will be PRINTED
-```{r}
-read.csv("example_data.csv")
-```
-
-## read data and ASSIGN to OBJECT
-```{r}
-my_data_csv <- read.csv("example_data.csv")
-```
-
-## View object
-
-Viewing can be done interactively, but note that in order to include the output of `View` in a .Rmd report, we'll need to include a figure.
-```{r, eval = FALSE}
-View(my_data_cvs)
-```
-
-```{r, echo = FALSE}
-# knitr::include_graphics()
-```
-
-To read in different file types, we will need to download additional R packages.
-
-# Install packages
-
-R packages are add-ons that expand the functionality of base R. Its helpful  to think of R as a series of books. "Base R" is the starter set of "books" needed for R to function. install.packages() downloads new the "book" and adds it to your collection. This step needs to be done only once, or periodically to update. Note: quotation marks ("") ARE REQUIRED to specify a package name. openxlsx is a very useful package that allows read/write of xls/xlsx files. haven provides functions to read from various stats packages, including SPSS, STATA, and SAS. Notably, haven is able to read in value and value labels
-
-**NOTE:** installing packages should be done manually, not as part of an Rmd report.
-
-```{r}
-# install.packages("openxlsx")
-# install.packages("haven")
-# install.packages("ggplot2") ## for plotting
-# install.packages("gtsumamry") ## for tables
-```
-# Load Packages
-
-In order to load the package, we use library(). This is like taking the book off your shelf and opening it to read/use. This step needs to be done each time you open R/Rstudio. so it's helpful to have a section at the top of the script that loads all packages needed. Note: quotation marks ("") are NOT required for the library function.
+Note: quotation marks ("") are NOT required for the library function.
 
 ```{r}
 library(haven)
@@ -107,15 +72,15 @@ library(ggplot2)
 library(gtsummary)
 ```
 
-# Read in my_data (xlsx)
 
-Excel can be convenient for data management, but like .csv files does not allow for labeled values, like many other stats programs. Coded values may be hard to work with.
+## Read in my_data (.xlsx)
+
+Excel can be convenient for data management, but like .csv files, it does not allow you to store a numeric code and a text label in a single cell. Understanding coded values will require referring to a separate metadata file.
 
 ```{r}
 my_data_xlsx <- read.xlsx("example_data.xlsx")
 
-## Since Viewing doesn't work, we'll comment it out
-# View(my_data_xlsx)
+head(my_data_xlsx)
 
 #### Summarize (Frequency Tables)
 table(my_data_xlsx$SEX)
@@ -123,11 +88,11 @@ table(my_data_xlsx$EDATTAIN)
 table(my_data_xlsx$EMPSTAT)
 ```
 
-# Read in my_data (with Labels)
+## Read in my_data (with labels)
 
-The haven package provides functions to read/write for many common statistical packages. This package makes it easier to get your data into R, and also provides support for LABELED VALUES.
+The haven package provides functions to read and write the formatted data files used by Stata, SPSS, and SAS. This package makes it easier to get your data into R, and also provides support for LABELED VALUES.
 
-See Environment Panel, haven labels are complex; factors preserve the [value + label] pairs, in more simple structure
+haven labels are complex; converting to the factor format, which is native to R, will preserve the labels and work more smoothly with other R functions.
 
 We use `as_factor` from the `haven` package to simplify the labeled values.
 
@@ -138,7 +103,7 @@ my_data <- read_dta("example_data.dta")
 head(my_data) # It's still numeric! and confusing
 
 
-## as_factor in the haven package to convert for analysis
+## as_factor in the haven package to convert to factors for further analysis
 
 my_data$SEX <- as_factor(my_data$SEX)
 my_data$EDATTAIN <- as_factor(my_data$EDATTAIN)
@@ -148,49 +113,51 @@ head(my_data) # Labels present!
 ```
 
 
-## Summaries
+## Summarize your data
 
-#### Summarize (Frequency Tables)
+### Frequency Tables
 ```{r}
 table(my_data$SEX)
 table(my_data$EDATTAIN)
 table(my_data$EMPSTAT)
 ```
-#### Summarize (Numeric)
+
+### Distribution of Numeric Variables
 ```{r}
-range(my_data$AGE)
+summary(my_data$AGE)
 ```
-#### Summarize (Two-Way Tables)
+
+### Two-Way Tables
 ```{r}
 table(my_data$EDATTAIN, my_data$SEX)
 ```
-## Basic Data Manipulation 
 
-### Subset by a value
+## Subset observations 
 
-Use `subset()` function specifying a DATA.FRAME followed by a LOGICAL ARGUMENT
+Use the `subset()` function specifying a DATA.FRAME followed by an expression that will return a LOGICAL (TRUE or FALSE) value.
+
 ```{r}
-sub_data <- subset(my_data,
-                   EDATTAIN != "Unknown"
-                   )
+sub_data <- subset(my_data, EDATTAIN != "Unknown")
 
 table(sub_data$EDATTAIN) ## empty levels present
 ```
 
-R factors will "hold onto" empty levels, unless we explicitly tell R to ignore, or "drop" unused levels.
+R factors will keep empty levels, unless we explicitly tell R to drop them.
+
 ```{r}
 sub_data <- droplevels(sub_data) ## drop removed labels
 
-
+# This time we save the resulting table to an object for further analysis
 crosstab <- table(sub_data$EDATTAIN, sub_data$SEX)
 
 ```
 
-#### A Note on R objects
+## Printing R objects
 
 Calling an R object will print the contents of that object. Small objects may be printed in the console/Rmd report, but larger onces might get truncated:
+
 ```{r}
-## A Reasonable table
+## A reasonable table
 crosstab
 ```
 
@@ -200,52 +167,51 @@ my_data
 ```
 
 
-# Write Out R objects
+## Writing out R objects
 
-Options to write R objects out to various filetypes. Note the similarities/differences in syntax. In most write- functions, the first argument is the R object to be written out.
+Options to write R objects out to various file types. Note the similarities and differences in syntax. In most file-writing functions, the first argument is the R object to be written out.
 
 ```{r}
-write.csv(crosstab,
-          file =  "xtab_emp_by_sex.csv")
+write.csv(crosstab, file =  "xtab_emp_by_sex.csv")
 
-write.xlsx(crosstab,
-           file = "xtab_emp_by_sex.xlsx")
+write.xlsx(crosstab, file = "xtab_emp_by_sex.xlsx")
 
-write_dta(as.data.frame(crosstab),
-          path = "xtab_emp_by_sex.dta") ## note different syntax
-
+write_dta(as.data.frame(crosstab), path = "xtab_emp_by_sex.dta") 
+## note different syntax (argument name is `path` instead of `file`)
 ```
 
-# Base R vs Packages - Tables
+## Base R vs Packages - Tables
 
-Viewing tables in base R can be a bit clunky. 
+Creating tables in base R can be a bit clunky. If you want a table of 
+proportions or percentages, it may take a few steps.
+
 ```{r}
 
 crosstab ## print frequencies
-prop.table(crosstab) ## get proportions
-
+ppn_crosstab <- prop.table(crosstab) ## get proportions
+ppn_crosstab
+ppn_crosstab <- round(ppn_crosstab, 2) # round to 2 digits
+ppn_crosstab
 ```
-#### Fancier Tables (gtsummary)
 
-`gtsummary` produces nice all-in-one tables in the `Viewer` panel, but note the need to get an image to include for reports.
+### Fancier Tables (gtsummary)
+
+`gtsummary` produces nice all-in-one tables that integrate nicely into HTML reports created with R Markdown.
 
 ```{r}
-library(gtsummary)
 tbl_summary(sub_data, by = "SEX")
 ```
 
-```{r, echo = FALSE}
-# knitr::include_graphics()
-```
-# Base R vs Packages - Graphs
 
-#### Basic Visualization (Base R)
+## Base R vs Packages - Graphs
+
+### Basic Visualization (Base R)
 
 ```{r}
 barplot(crosstab)
 ```
 
-Base R provides MANY built in functions, each with many options to customize your plots. The flexibility/customization comes at the trade-off of user input. Adding a legend takes 2 extra steps in Base R.
+Base R provides MANY built in functions, each with many options to customize your plots. The flexibility/customization comes at the trade-off of user input. Adding a legend takes two extra steps in Base R.
 
 First, we use layout() to tell R to treat the plot window as a matrix(), consisting of 1 row and 4 columns: 1,1,2,2. The first plot will occupy the first two columns (as a merged column), while the second plot will occupy the last set of columns.
 
@@ -256,38 +222,34 @@ Make an empty plot (of a single point) to use as the base for the legend. "n" in
 layout(matrix(c(1,1,2,2), ncol = 4))
 
 ## barplot as normal
-barplot(crosstab,
-        col = rainbow(4),
-        main = "Education by Sex"
-)
+barplot(crosstab, col = rainbow(4), main = "Education by Sex")
 
 ## Make an empty plot 
-plot(1,
-     type = "n", ## do not plot the points
-     bty = "n", ## do not plot a bounding box
-     xaxt = "n", ## do not plot an X axis
-     xlab = "", ## label the x axis as "", IE blank
-     yaxt = "n", ## do not plot a Y axis
-     ylab ="", ## label the Y axis as "", IE blank
-     # par("mar") = c(0,0,0,0)
+plot(
+  1,
+  type = "n", ## do not plot the points
+  bty = "n", ## do not plot a bounding box
+  xaxt = "n", ## do not plot an X axis
+  xlab = "", ## label the x axis as "", in other words, as blank
+  yaxt = "n", ## do not plot a Y axis
+  ylab ="", ## label the Y axis as "", in other words, as blank
 )
 
-legend("center",
-       legend = levels(sub_data$EDATTAIN),
-       pch = 22,
-       pt.bg = rainbow(4),
-       inset = c(-1.2,0),
-       title = "Ed Attainment"
+legend(
+  "center",
+  legend = levels(sub_data$EDATTAIN),
+  pch = 22,
+  pt.bg = rainbow(4),
+  inset = c(-0.2,0),
+  title = "Ed Attainment"
 )
 ```
 
-#### Basic Visualization (ggplot)
+### Basic Visualization (ggplot2)
 
-`ggplot` is EXTREMELY popular for quickly generating polished looking plots. It does use a slightly different syntax than Base R, but there is ample user-support.
+`ggplot2` is EXTREMELY popular for quickly generating polished looking plots. It does use a slightly different syntax than Base R, but there is ample user-support.
 
 ```{r}
-
 qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
-
 ```
 
