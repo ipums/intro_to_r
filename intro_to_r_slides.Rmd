@@ -7,8 +7,9 @@ output:
   xaringan::moon_reader:
     lib_dir: libs
     nature:
-      highlightStyle: github
+      highlightStyle: default
       highlightLines: true
+      highlightSpans: true
       countIncrementalSlides: false
 ---
 
@@ -30,8 +31,6 @@ background-size: 140%
 
 
 ```{r setup, include=FALSE}
-
-
 
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
@@ -66,10 +65,9 @@ Getting Started
 
 
 --
-Common Applications
-  Read in data
-  Manipulate Data
-  Visualize Data
+R + Packages 
+  Tables
+  Graphs 
   
 --
 Reporting in R
@@ -104,10 +102,9 @@ Getting Started
   Coding in R/Rstudio (Live Demo)
 
 
-Common Applications
-  Read in data
-  Manipulate Data
-  Visualize Data
+R + Packages 
+  Tables
+  Graphs 
   
   
 Reporting in R
@@ -277,37 +274,77 @@ that is constantly working to improve R and creating resources for learning R.
 Finally, in contrast to most other stats packages, R is free!
 
 ---
+# Key Terms
+
+* Functions
+--
+* Objects
+--
+* Packages
+
+---
+
 # Key Terms - **Functions**, Objects, Packages
 
-To read data into R, we can use the `read.csv()` **function**.
-* **Functions** end in parentheses
-* **Functions** take various **arguments** within their parentheses as **input**.
-* **Functions** perform actions/operations on the inputs and usually return **output**.
 --
+* **Functions** Perform operations in R
+--
+* **Functions** end in parentheses
+--
+* **Functions** take various **arguments** within their parentheses as **input**.
+--
+* **Functions** usually return **output**.
 
+---
 
-The `read.csv()` **function** takes the `file=`  **argument** as **input**. Below, we *pass* the filepath `"example_data.csv"`as the **argument** to the **function** 
+# Key Terms - **Functions**, Objects, Packages
+
+* Describe Data
+  + `mean()`
+  + `median()`
+  + `range()`
+--
+* Summarize Data
+  + `summary()`
+  + `table()`
+--
+* GET the Data
+  + `read.csv()`
+
+---
+
+# Key Terms - **Functions**, Objects, Packages
+
+ 
 
 .pull-left[
 User Input:
 ```{r, eval = FALSE}
 
-read.csv(file="example_data.csv")
+read.csv(
+  file="example_data.csv"
+  )
+
 ```
+
+--
+
+* The `read.csv()` **function** takes the `file=`  **argument** as **input**. 
+  + The filepath `"example_data.csv"` is the **argument** to the **function**
+
 ]
+
+--
 
 .pull-right[
 R output:
 ```{r, echo=FALSE}
-read.csv("example_data.csv")
 knitr::include_graphics("images/print_csv_1.png")
 ```
 
-
 `...`
 
-
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("images/print_csv_2.png")
 ```
 ]
@@ -320,53 +357,87 @@ Here we can (probably) see our data has been read in and printed...probably not 
 
 ---
 
+# Key Terms - Functions, **Objects**, Packages
 
-# Key Terms
-
-
-Functions, **Objects**, Packages
-
+--
 
 Technically the **output** of `read.csv()` is a `data.frame`
-  + `data.frame`s are like spreadsheets, with data organized into rows and columns.
-  
-Instead of printing the contents of `"example_data.csv"`, we want save that information to an **R object**. 
+--
 
+  + A `data.frame` is like a spreadsheet
+  + Data organized into rows and columns
+
+--
+
+We must **store** the **output** of `read.csv()` as an **R Object** in order to work with it.
+
+---
+
+# Key Terms - Functions, **Objects**, Packages
+
+--
+
+```{r, eval = FALSE}
+my_data <- read.csv(file = "example_data.csv")
+```
+
+---
+
+# Key Terms - Functions, **Objects**, Packages
+
+```{r, eval=FALSE}
+ `my_data` <- read.csv(file = "example_data.csv")
+```
+
+--
 **R objects** are variables, data, (even functions) stored in R's local memory so the user can interact with them. 
 
+---
+
+# Key Terms - Functions, **Objects**, Packages
+
+
+```{r, eval=FALSE}
+ my_data `<-` read.csv(file = "example_data.csv")
+```
+
+
+**R objects** are variables, data, (even functions) stored in R's local memory so the user can interact with them. 
+--
+
 To create an **R object**, use the `<-` command to **assign** the contents of `"example_data.csv"` to an **R object** called `my_data`. 
-  + `<-` is called the **assignment operator** and can be read as "gets" or "gets the result of"
-  + The below code could be read as: *"my_data gets the result of read.csv"
+--
+
+* `<-` is called the **assignment operator** and can be read as "gets" or "gets the result of"
+* The above code could be read as: "*my_data gets the result of read.csv*"
 
 ---
 
 
-# Key Terms
-
-
-Functions, **Objects**, Packages
+# Key Terms - Functions, **Objects**, Packages
 
 Now that `my_data` is stored as an **R object**, we can use **functions** to interact with it.
-  * To type the assignment operator, use `[less than]``[minus sign]`
-  * In some cases, like when only one argument is needed, the argument name does not need to be specified
-
-
+ 
 .pull-left[
 
 User Input:
+
 ```{r, eval = FALSE}
 
 my_data <- read.csv(file = "example_data.csv")
 View(my_data)
 ```
 
+ * In some cases, like when only one argument is needed, the argument name does not need to be specified
+ 
 ]
+
+--
 
 .pull-right[
 
 R output:
 ```{r, echo= FALSE}
-my_data <- read.csv("example_data.csv")
 knitr::include_graphics("images/view_data.png")
 ```
 
@@ -374,6 +445,8 @@ knitr::include_graphics("images/view_data.png")
 
 
 ???
+
+  * To type the assignment operator, use `[less than]``[minus sign]`
 
 "everything in R is an object, everything you do in R is a function" - someone, somewhere, probably
 
@@ -383,11 +456,10 @@ knitr::include_graphics("images/view_data.png")
 
 # Key Terms
 
-The **output** of `read.csv()` is a `data.frame`.
-  + Like a spreadsheet, `data.frames` organize data by rows and columns.
-
 Some functions work `data.tables`, while others are meant for single columns or `vectors`.
-  + Specify a column name using `$`
+  + Specify a column name using **`$`**
+  
+--
 
 .pull-left[
 
@@ -397,11 +469,13 @@ nrow(my_data)
 ncol(my_data)
 colnames(my_data)
 
-mean(my_data$AGE)
-summary(my_data$AGE)
+summary(my_data`$`AGE)
+table(my_data`$`SEX)
 ```
 
 ]
+
+--
 
 .pull-right[
 
@@ -410,31 +484,33 @@ R output:
 knitr::include_graphics("images/functions_on_objects.png")
 ```
 
+**redo this image**
 ]
 
 
 ---
 
 
-# Key Terms
+# Key Terms - Functions, Objects, **Packages**
 
-
-Functions, Objects, **Packages**
-
-**Packages** are bundles of In R, collections of **functions** can be bundled into **package**.
+**Packages** are pre-built bundles of **functions**.
+--
 
 **base R** refers to the "starter set" of packages users get when they "download R".
-
   + Using **base R** users *could* write code to accomplish *nearly* anything they want to
 --
   + Takes time and effort to code
+--
+
   + *Can't someone else do it??*
 
 ---
 
-Functions, Objects, **Packages**
+# Key Terms - Functions, Objects, **Packages**
 
 The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts > 18k Contributed Packages that expand the capabilities of R.
+--
+
   + Add support for specific/obscure programs or file types
   + Streamline common tasks, data wrangling/visualization
   + Bundle complex analysis/operations into simple, user friendly functions
@@ -442,9 +518,14 @@ The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts > 18k Contribut
 --
 
 **Don't be intimidated!**
+--
 
 * Packages provide high level of *customization*, allowing the user to fine-tune thier R experience
+--
+
 * Data management, Analysis, Visualization, Reporting all in one program
+--
+
 * See [Resource List]() for our recommendations of common/helpful R packages for working with census/survey data. 
 
 
@@ -456,33 +537,24 @@ While openxlsx is geared towards interacting with a specific filetype, other pac
 
 ---
 
-# Key Terms
+# Key Terms - Functions, Objects, **Packages**
 
-Functions, Objects, **Packages**
-
-While base R does not have support to read .xlsx files, `openxlsx` provides read/write support.
+While **base R** does not have support to read `.xlsx` files, the `openxlsx` **package** expands base R to provide read/write support.
 
 ```{r, eval = FALSE}
 
-install.packages("openxlsx") ## download from CRAN
-library(openxlsx) ## load package locally
+install.packages("openxlsx") ## Download from CRAN
+library(openxlsx) ## Load package locally
 
 my_data <- read.xlsx("example_data.xlsx")
-write.xlsx(my_data,file =  "example_data.xlsx")
-
-install.packages("haven")
-librarry(haven)
-
-my_data <- haven::read_dta(file = "example_data.dta") ## STATA
-
-
-
-
+write.xlsx(my_data,
+           file =  "example_data.xlsx")
 ```
 
 
 * `install.packages()` needs to be done only once - or periodically to update. 
 * `library()` needs to called each time you open R (to access that package)
+* Use one or more `#` to add comments to R code.
 
 ??
 
@@ -492,7 +564,7 @@ Example of a package that interacts with a specific program
 
 Functions, Objects, **Packages**
 
-For interacting with other stats packages (eg, STATA, SPSS, SAS), we reccomend the `haven` package.
+For interacting with other stats packages (eg, STATA, SPSS, SAS), we recommend the `haven` package.
 
 .pull-left[
 ```{r, eval = FALSE}
@@ -517,19 +589,19 @@ In addition to supporting many filetypes, `haven` supports labeled values
 
 ---
 
-# Key Terms
-
-Functions, Objects, **Packages**
+# Key Terms - Functions, Objects, **Packages**
 
 
 .pull-left[
   
 ```{r, eval = FALSE}
 
-install.packages("gtsummary") ## download from CRAN
+## download from CRAN
+install.packages("gtsummary") 
 install.packages("ggplot2") 
 
-library(gtsummary)  ## load package locally
+## Load package(s) locally
+library(gtsummary)  
 library(ggplot2)
 
 ```
@@ -548,19 +620,14 @@ Streamlining common tasks / quality of life packages
 
 ---
 
-# Key Terms
-
-
-Functions, Objects, **Packages**
+# Key Terms - Functions, Objects, **Packages**
 
 Adding support for complex operations - `ipumsr`
 
 .pull-left[
-```{r, eval = FALSE}
+```{r, echo=FALSE}
 
-install.packages("ipumsr") ## download from CRAN
-
-library(ipumsr) ## load package locally
+# knitr::include_graphics() ## ipumsr logo
 
 ```
 
@@ -666,13 +733,11 @@ Getting Started
   
   Coding in R/Rstudio (Live Demo)
 .greyed-out[
-Common Applications
+R + Packages 
 
-  Read in data
+  Tables
   
-  Manipulate Data
-  
-  Visualize Data
+  Graphs 
   
 Reporting in R
 
@@ -750,12 +815,13 @@ knitr::include_graphics("images/r_install_1.png")
 ```
 
   
-+ https://cran.r-project.orgbin/windows/base/
-+ https://cran.r-project.org/bin/macosx/
-+ (pre-bundled on linux)
 
 
 ???
+
++ https://cran.r-project.orgbin/windows/base/
++ https://cran.r-project.org/bin/macosx/
++ (pre-bundled on linux)
 
 Don't go too quickly on this
 
@@ -770,18 +836,20 @@ https://www.rstudio.com/
 knitr::include_graphics("images/rstudio_install2.png")
 ```
 
-  + https://www.rstudio.com/products/rstudio/download/
-  + https://www.rstudio.com/products/rstudio/download-server/
 
 
 
 ???
+  + https://www.rstudio.com/products/rstudio/download/
+  + https://www.rstudio.com/products/rstudio/download-server/
+
   + **NOTE:** Might require admin privileges
   
 ---
 
 # Demo: Rstudio Navigation
 
+**include screenshot of Rstudio**
 
 ???
 
@@ -814,43 +882,31 @@ knitr::include_graphics("images/rstudio_install2.png")
 
 # Demo: Coding in R/Rstudio
 
+```{r, echo = FALSE}
+library(haven)
+my_data <- read_dta("example_data.dta")
+
+my_data$SEX <- as_factor(my_data$SEX)
+my_data$EDATTAIN <- as_factor(my_data$EDATTAIN)
+my_data$EMPSTAT <- as_factor(my_data$EMPSTAT)
+
+sub_data <- subset(my_data,
+                   EDATTAIN != "Unknown"
+                   )
+
+sub_data <- droplevels(sub_data) ## drop removed labels
+
+
+crosstab <- table(sub_data$EDATTAIN, sub_data$SEX)
+
+```
+
 ---
+
 # Overview 3
 
-<<<<<<< HEAD
+
 .greyed-out[
-=======
-# Plotting example
-
-.pull-left[
-### Base R
-```{r, eval = TRUE, echo = TRUE}
-
-my_data
-
-```
-]
-
-.pull-right[
-### ggplot
-```{r, eval = TRUE, echo = TRUE}
-
-my_data
-
-```
-]
-
----
-
-# Table example
-
----
-
-# Overview 6
-
-
->>>>>>> 123ceaaf63a2b6ea210ff4356e8824515a57165e
-
 Introduction
 
   What is R
@@ -859,7 +915,7 @@ Introduction
   
   Key Terms
 
-Getting Started
+Getting Started - Base R
   
   Installation
   
@@ -867,13 +923,11 @@ Getting Started
   
   Coding in R/Rstudio (Live Demo)]
 
-Common Applications
+R + Packages 
 
-  Read in data
+  Tables
   
-  Manipulate Data
-  
-  Visualize Data
+  Graphs 
 .greyed-out[  
 Reporting in R
 
@@ -886,6 +940,78 @@ Resources
 
 ---
 
+# R + Packages - Tables 
+
+.pull-left[
+### Base R
+```{r, eval = TRUE, echo = TRUE}
+
+## Print Frequencies
+crosstab
+## Print Proportions
+prop.table(crosstab)
+
+```
+]
+
+.pull-right[
+### gtsummary
+```{r, eval = FALSE, echo = TRUE}
+library(gtsummary)
+tbl_summary(sub_data, by = "SEX")
+
+```
+
+```{r, eval=TRUE, echo=FALSE}
+# knitr::include_graphics()
+```
+]
+
+---
+
+# R + Packages  Graphs 
+.pull-left[
+### Base R
+```{r}
+
+layout(matrix(c(1,1,2,2), 
+              ncol = 4))
+
+barplot(crosstab,
+        col = rainbow(4),
+        main = "Education by Sex"
+)
+
+plot(1, type = "n", bty = "n", 
+     xaxt = "n", xlab = "", 
+     yaxt = "n",ylab =""
+)
+
+legend("center", title = "Ed Attainment",
+       legend = levels(sub_data$EDATTAIN),
+       pch = 22, pt.bg = rainbow(4),
+       inset = c(-1,0)
+)
+```
+
+```{r, echo = FALSE}
+# knitr::include_graphics()
+```
+]
+
+.pull-right[
+### ggplot
+```{r}
+library(ggplot2)
+qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
+```
+
+```{r, echo = FALSE}
+# knitr::include_graphics()
+```
+]
+
+--- 
 # Overview 4
 
 .greyed-out[
@@ -906,13 +1032,11 @@ Getting Started
   
   Coding in R/Rstudio (Live Demo)
 
-Common Applications
+R + Packages 
 
-  Read in data
+  Tables
   
-  Manipulate Data
-  
-  Visualize Data]
+  Graphs 
   
 Reporting in R
 
@@ -922,6 +1046,95 @@ Q&A
 
 Resources
 ]
+
+---
+
+# Reporting in R - Rscripts
+
+
+.pull-left[
+* Easy to set up
+* Minimal documentation
+]
+.pull-right[
+```{r, echo = FALSE}
+
+# knitr::include_graphics()
+```
+]
+
+---
+
+# Reporting in R - Rmarkdown
+
+
+.pull-left[
+* **Code** then **Knit**
+  + Two step process
+* Easy to document
+]
+.pull-right[
+```{r, echo = FALSE}
+
+# knitr::include_graphics()
+```
+]
+
+---
+
+# Reporting in R - Rmarkdown
+
+
+.pull-left[
+* **Code** then **Knit**
+  + Two step process
+* Easy to document
+]
+.pull-right[
+```{r, echo = FALSE}
+
+# knitr::include_graphics()
+```
+]
+
+---
+
+# Reporting in R - Side by Side
+
+Raw files are very similar.
+.pull-left[
+```{r, echo = FALSE}
+# knitr::include_graphics() ## rscript
+```
+
+]
+.pull-right[
+```{r, echo = FALSE}
+# knitr::include_graphics() ## rmarkdown
+```
+]
+
+---
+# Reporting in R - Side by Side
+
+Results are very different.
+.pull-left[
+```{r, echo = FALSE}
+# knitr::include_graphics() ## rscript
+```
+
+]
+.pull-right[
+```{r, echo = FALSE}
+# knitr::include_graphics() ## rmarkdown
+```
+]
+
+???
+RMD...
+encourage you to think of code in discrete chunks
+Encourages you to document code - for yourself or others
+flexible formats, slides, reports and more
 
 ---
 
@@ -945,24 +1158,59 @@ Getting Started
   
   Coding in R/Rstudio (Live Demo)
 
-Common Applications
+R + Packages 
 
-  Read in data
+  Tables
   
-  Manipulate Data
+  Graphs 
   
-  Visualize Data]
+Reporting in R
+
+  Scripts vs Rmd]
+
+Q&A
+.greyed-out[
+Resources
+]
+
+---
+
+
+# Overview 6
+
+.greyed-out[
+
+Introduction
+
+  What is R
+  
+  Why use R
+  
+  Key Terms
+
+Getting Started
+  
+  Installation
+  
+  Rstudio Navigation (Live Demo)
+  
+  Coding in R/Rstudio (Live Demo)
+
+R + Packages 
+
+  Tables
+  
+  Graphs 
   
 Reporting in R
 
   Scripts vs Rmd
 
-Q&A
-]
+Q&A]
 Resources
 
----
 
+---
 # Resources
 
 ```{r}
@@ -977,12 +1225,4 @@ Resources
 
 # NOTES 
 
-Can you highlight the "<-" command so it stands out that it is the command
-
-Maybe animate and bring in line by line as you discuss? (since it's a lot of text) animate some, cut down,
-
-Can you highlight or enlarge the symbol (etc.) that you are defining?
-From Sula Sarkar to Everyone 03:11 PM
-"#" and labels on the end
-cut off on the bottom
 
