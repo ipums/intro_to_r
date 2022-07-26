@@ -1,5 +1,5 @@
 ---
-title: "Introduction and exposure to <br/> R and Rstudio"
+title: "Introduction and exposure to <br/> R and RStudio"
 author: "IPUMS International"
 institute: "Workshop on <br/> Harnessing Opportunities Towards Resilient Future <br/> Through Census Data"
 date: "July 27th 2022"
@@ -49,6 +49,7 @@ knitr::opts_chunk$set(
 
 
 ---
+
 # Overview 0
 
 Introduction
@@ -60,8 +61,8 @@ Introduction
 --
 Getting Started
   Installation
-  Rstudio Navigation (Live Demo)
-  Coding in R/Rstudio (Live Demo)
+  RStudio Navigation (Live Demo)
+  Coding in R/RStudio (Live Demo)
 
 
 --
@@ -89,6 +90,7 @@ will address at end
 and point to more resources
 
 ---
+
 # Overview 1
 
 
@@ -102,8 +104,8 @@ Introduction
 
 Getting Started
   Installation
-  Rstudio Navigation (Live Demo)
-  Coding in R/Rstudio (Live Demo)
+  RStudio Navigation (Live Demo)
+  Coding in R/RStudio (Live Demo)
 
 
 R + Packages 
@@ -121,6 +123,7 @@ Q&A
 Resources
 
 ---
+
 # 1. Introduction
 
 
@@ -278,6 +281,7 @@ that is constantly working to improve R and creating resources for learning R.
 Finally, in contrast to most other stats packages, R is free!
 
 ---
+
 # Key Terms
 
 --
@@ -743,9 +747,9 @@ Getting Started
   
   Installation
   
-  Rstudio Navigation (Live Demo)
+  RStudio Navigation (Live Demo)
   
-  Coding in R/Rstudio (Live Demo)
+  Coding in R/RStudio (Live Demo)
 .greyed-out[
 R + Packages 
 
@@ -771,7 +775,7 @@ Resources
 ???
 
 now that you've learned some fundamentals, we'll go over:
-* installation R/Rstudio
+* installation R/RStudio
 * basic setup and navigation.
 * Review Key Terms in action
 
@@ -840,7 +844,7 @@ Don't go too quickly on this
 
 ---
 
-# Installation - Rstudio
+# Installation - RStudio
 
 
 https://www.rstudio.com/
@@ -860,7 +864,7 @@ knitr::include_graphics("images/rstudio_install2.png")
   
 ---
 
-# Rstudio Navigation
+# RStudio Navigation
 
 --
 
@@ -873,7 +877,7 @@ knitr::include_graphics("images/panes_1.png")
 
 ---
 
-# Rstudio Navigation - Console
+# RStudio Navigation - Console
 
 ```{r}
 knitr::include_graphics("images/panes_2.png")
@@ -882,7 +886,8 @@ knitr::include_graphics("images/panes_2.png")
   console = R in its simplest form
   all input, most output
 ---
-# Rstudio Navigation - Environment
+
+# RStudio Navigation - Environment
 
 ```{r}
 knitr::include_graphics("images/panes_3.png")
@@ -892,8 +897,8 @@ knitr::include_graphics("images/panes_3.png")
 R objects will be shown here
 Other tabs not very needed for most users
 
----
-# Rstudio Navigation - Everything Else
+
+# RStudio Navigation - Everything Else
 
 ```{r}
 knitr::include_graphics("images/panes_4.png")
@@ -987,7 +992,7 @@ knitr::include_graphics("images/working_drive.png")
 
 ---
 
-# Demo: Coding in R/Rstudio
+# Demo: Coding in R/RStudio
 
 ```{r, echo = FALSE}
 library(haven)
@@ -1044,9 +1049,9 @@ Getting Started - Base R
   
   Installation
   
-  Rstudio Navigation (Live Demo)
+  RStudio Navigation (Live Demo)
   
-  Coding in R/Rstudio (Live Demo)]
+  Coding in R/RStudio (Live Demo)]
 
 R + Packages 
 
@@ -1065,80 +1070,53 @@ Resources
 
 ---
 
-# R + Packages - Tables 
+# R + Packages: Tables 
 
 .pull-left[
 ### Base R
-```{r, eval = TRUE, echo = TRUE}
-## print frequencies
-crosstab 
-```
-
-```{r}
-## get proportions
-ppn_crosstab <- prop.table(crosstab) 
-ppn_crosstab
-```
-
-```{r}
-# round to 2 digits
-ppn_crosstab <- round(ppn_crosstab, 2) 
-ppn_crosstab
-
+```{r, echo = FALSE, fig.alt = "Screenshot of two lines of code to create a table of proportions, starting with previously created crosstab object, and passing it to the prop.table() and round() functions. The table is then printed by calling the object name ('ppn_tab')."}
+knitr::include_graphics("images/ppn-tab-base-r.png")
 ```
 ]
+
+--
 
 .pull-right[
 ### gtsummary
-```{r, echo = TRUE}
-library(gtsummary)
-tbl_summary(sub_data, by = "SEX")
+```{r, echo = FALSE, fig.alt = "Screenshot of code tbl_summary(sub_data, by = 'SEX')"}
+knitr::include_graphics("images/ppn-tab-gtsummary-code.png")
+```
 
+```{r, echo = FALSE, fig.alt = "Screenshot of HTML table of EDATTAIN frequencies and percentage distribution by SEX, produced by the preceding tbl_summary function call."}
+knitr::include_graphics("images/ppn-tab-gtsummary-result.png")
 ```
 
 ]
 
 ---
 
-# R + Packages  Graphs 
+# R + Packages: Graphs 
 .pull-left[
 ### Base R
-```{r, eval = FALSE}
-
-layout(matrix(c(1,1,2,2), 
-              ncol = 4))
-
-barplot(crosstab,
-        col = rainbow(4),
-        main = "Education by Sex"
-)
-
-plot(1, type = "n", bty = "n", 
-     xaxt = "n", xlab = "", 
-     yaxt = "n",ylab =""
-)
-
-legend("center", title = "Ed Attainment",
-       legend = levels(sub_data$EDATTAIN),
-       pch = 22, pt.bg = rainbow(4),
-       inset = c(-1,0)
-)
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("images/barplot-base-r-code.png")
 ```
 
 ]
 
+--
+
 .pull-right[
-### ggplot
-```{r, eval = FALSE}
-library(ggplot2)
-qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
+### ggplot2
+```{r, echo = FALSE, out.width = "50%"}
+knitr::include_graphics("images/barplot-ggplot2-code.png")
 ```
 
 ]
 
 ---
 
-# R + Packages  Graphs 
+# R + Packages: Graphs 
 .pull-left[
 ### Base R
 ```{r, echo = FALSE}
@@ -1166,16 +1144,16 @@ legend("center", title = "Ed Attainment",
 ]
 
 .pull-right[
-### ggplot
+### ggplot2
 ```{r, echo = FALSE}
 library(ggplot2)
 qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
 ```
 ]
 
----
 
 --- 
+
 # Overview 4
 
 .greyed-out[
@@ -1192,9 +1170,9 @@ Getting Started
   
   Installation
   
-  Rstudio Navigation (Live Demo)
+  RStudio Navigation (Live Demo)
   
-  Coding in R/Rstudio (Live Demo)
+  Coding in R/RStudio (Live Demo)
 
 R + Packages 
 
@@ -1213,105 +1191,98 @@ Resources
 
 ---
 
-# Reporting in R - Rscripts
+# Reusable Code: R Scripts
 
-
-.pull-left[
-Pros
-* Easy to set up
-* Good for achieving tasks
-  + Run analysis, save outputs
-    + Review results later
-  + File management
---
-
-Cons
-* Limited documentation
-* Wall of text
-  + tiring to look at
-]
-.pull-right[
 ```{r, echo = FALSE, fig.alt="screenshot of example script, code and comments are hard to differentiate"}
 
-knitr::include_graphics("images/rscript.png")
+knitr::include_graphics("images/rscript_cropped.png")
 ```
-]
+
+???
+One of the benefits of doing your data cleaning and analysis using code is 
+that you can document what you did, and you can reuse and adapt your code for 
+future work.
+
+One way to save your code to make it reusable is to put it in what we call an 
+R "script", which is just a plain text file with a ".R" file extension.
+
+R scripts are great for data cleaning and other tasks where you're not focused 
+on communicating your results, but they do have some limitations. First, you 
+can only provide context and explanation of your code through the use of 
+comments, which are the green lines we see here that start with one or more 
+hashtag symbols, and there is no support for formatted text such as bold or 
+italics. Second, running an R script does not by default create a save-able 
+output file that weaves together your code, explanatory text, and output 
+objects, such as tables and graphs. Thus, if you wanted to create a report from 
+an R script, you might end up saving tables and graphs out to their own files, 
+then copying and pasting those into something like a Microsoft Word document. 
+That's where R Markdown documents come in.
+
 
 ---
 
-# Reporting in R - Rmarkdown
+# Reusable Code + Reporting: R Markdown
 
+```{r, echo = FALSE, fig.alt="screenshot of r markdown file, code is more distinct, more formatting apparent", out.width = "95%"}
+
+knitr::include_graphics("images/rmarkdown_cropped.png")
+```
+
+???
+R Markdown documents, such as the one shown in the screenshot here, are also 
+just plain text files, but with a .Rmd file extension instead of .R. However, 
+R Markdown documents use a special syntax that allows you to weave together
+formatted explanatory text and code chunks, and most importantly, R Markdown 
+documents can be rendered to produce HTML, PDF, or Microsoft Word reports that 
+included formatted text, R code, and code output, including tables and graphs.
+
+---
+
+# Reusable Code: R Script vs. R Markdown
 
 .pull-left[
-* **Code** then **Knit**
-  + Two step process
-* Easy to document
+```{r, echo = FALSE, fig.alt="screenshot of example script, code and comments are hard to differentiate" }
+
+knitr::include_graphics("images/rscript_cropped.png")
+```
+
 ]
 .pull-right[
 ```{r, echo = FALSE, fig.alt="screenshot of r markdown file, code is more distinct, more formatting apparent"}
 
-knitr::include_graphics("images/rmarkdown.png")
-```
-]
-
----
-
-# Reporting in R - Side by Side
-
-Raw files are very similar.
-.pull-left[
-```{r, echo = FALSE, out.width="60%", fig.alt="screenshot of r markdown file, code is more distinct, more formatting is apparent" }
-
-knitr::include_graphics("images/rmarkdown.png")
-```
-
-]
-.pull-right[
-```{r, echo = FALSE, out.width="60%", fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"}
-
-knitr::include_graphics("images/rmd_render.png")
-```
-]
-
----
-# Reporting in R - Side by Side
-
-Results are very different.
-.pull-left[
-```{r, echo = FALSE, out.width="60%", fig.alt="screenshot of r markdown file, code is more distinct, more formatting is apparent" }
-
-knitr::include_graphics("images/rmarkdown.png")
-```
-
-]
-.pull-right[
-```{r, echo = FALSE, fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"}
-knitr::include_graphics("images/rmd_render.png")
-```
-]
-
----
-
-# Reporting in R - Rmarkdown
-
-
-.pull-left[
-* Polished looking reports
-  + pandoc styles
-* interactive HTML reports
-]
-.pull-right[
-```{r, echo = FALSE, fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"}
-
-knitr::include_graphics("images/rmd_render.png")
+knitr::include_graphics("images/rmarkdown_cropped.png")
 ```
 ]
 
 ???
-RMD...
-encourage you to think of code in discrete chunks
-Encourages you to document code - for yourself or others
-flexible formats, slides, reports and more
+So, as I said, both R scripts and R Markdown documents are a great way to save 
+your code to document it and make it reusable, and both are ultimately just
+plain text files, as we see here with the R script on the left and the R 
+Markdown document on the right. Using R Markdown requires learning a little bit 
+of additional syntax, but there is a lot of documentation out there to help you 
+learn it, and the payoff...
+
+
+---
+
+# Reusable Code: R Markdown Report
+
+
+```{r, echo = FALSE, fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration", out.width = "80%", fig.align='center'}
+knitr::include_graphics("images/rmd_render_with_graph.png")
+```
+
+???
+Is that you can create beautiful, reproducible reports like the HTML report we 
+see here. Here we see a hyperlinked table of contents to navigate our document, 
+a formatted heading and explanatory text, an R code chunk, and the graph 
+produced by that R code. 
+
+If we had created this report by pasting tables and graphs into Microsoft Word,
+and then we realized we wanted to make a change, we would have to rerun our code
+and manually copy and paste the results back into our document. With R Markdown,
+making a change to the report is as easy as changing your code and clicking a
+button to re-render the report.
 
 
 ---
@@ -1332,9 +1303,9 @@ Getting Started
   
   Installation
   
-  Rstudio Navigation (Live Demo)
+  RStudio Navigation (Live Demo)
   
-  Coding in R/Rstudio (Live Demo)
+  Coding in R/RStudio (Live Demo)
 
 R + Packages 
 
@@ -1370,9 +1341,9 @@ Getting Started
   
   Installation
   
-  Rstudio Navigation (Live Demo)
+  RStudio Navigation (Live Demo)
   
-  Coding in R/Rstudio (Live Demo)
+  Coding in R/RStudio (Live Demo)
 
 R + Packages 
 
@@ -1389,14 +1360,16 @@ Resources
 
 
 ---
-# Resources
 
-```{r}
-## ipums logo or website banner
-# knitr::include_graphics()
+class: center
+
+# Resources for Learning R
+
+Visit the [IPUMS Workshop Resources page](https://international.ipums.org/international/census_workshop_malaysia_2022.shtml)
+
+```{r echo = FALSE}
+knitr::include_graphics("images/workshop_resources_webpage_screenshot.png")
 ```
-
-* link to webpage
 
 ---
 
