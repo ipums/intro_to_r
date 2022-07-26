@@ -82,7 +82,11 @@ Q&A
 --  
 Resources
 
+???
 
+Feel free to ask questions in chat, 
+will address at end 
+and point to more resources
 
 ---
 # Overview 1
@@ -276,10 +280,14 @@ Finally, in contrast to most other stats packages, R is free!
 ---
 # Key Terms
 
+--
+
 * Functions
 --
+
 * Objects
 --
+
 * Packages
 
 ---
@@ -287,12 +295,16 @@ Finally, in contrast to most other stats packages, R is free!
 # Key Terms - **Functions**, Objects, Packages
 
 --
+
 * **Functions** Perform operations in R
 --
+
 * **Functions** end in parentheses
 --
+
 * **Functions** take various **arguments** within their parentheses as **input**.
 --
+
 * **Functions** usually return **output**.
 
 ---
@@ -304,10 +316,12 @@ Finally, in contrast to most other stats packages, R is free!
   + `median()`
   + `range()`
 --
+
 * Summarize Data
   + `summary()`
   + `table()`
 --
+
 * GET the Data
   + `read.csv()`
 
@@ -329,8 +343,8 @@ read.csv(
 
 --
 
-* The `read.csv()` **function** takes the `file=`  **argument** as **input**. 
-  + The filepath `"example_data.csv"` is the **argument** to the **function**
+* The `read.csv()` **function** takes the `file`  **argument** as **input**. 
+* The filepath `"example_data.csv"` is the **argument** to the **function**
 
 ]
 
@@ -484,7 +498,7 @@ R output:
 knitr::include_graphics("images/functions_on_objects.png")
 ```
 
-**redo this image**
+
 ]
 
 
@@ -520,7 +534,7 @@ The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts > 18k Contribut
 **Don't be intimidated!**
 --
 
-* Packages provide high level of *customization*, allowing the user to fine-tune thier R experience
+* Packages provide high level of *customization*, allowing the user to fine-tune their R experience
 --
 
 * Data management, Analysis, Visualization, Reporting all in one program
@@ -707,7 +721,7 @@ Review
   + *Are* things in R
 
 * Packages
-  + **Contain** things in R
+  + *Contain* things in R
 
 
 ---
@@ -750,10 +764,9 @@ Resources
 
 ---
 
-# Getting Started
---
+# Getting Started - Instalation
 
-How do I get it?!?
+
 
 ???
 
@@ -847,36 +860,130 @@ knitr::include_graphics("images/rstudio_install2.png")
   
 ---
 
-# Demo: Rstudio Navigation
+# Rstudio Navigation
 
-**include screenshot of Rstudio**
+--
+
+What a *pane*
+--
+
+```{r}
+knitr::include_graphics("images/panes_1.png")
+```
+
+---
+
+# Rstudio Navigation - Console
+
+```{r}
+knitr::include_graphics("images/panes_2.png")
+```
+???
+  console = R in its simplest form
+  all input, most output
+---
+# Rstudio Navigation - Environment
+
+```{r}
+knitr::include_graphics("images/panes_3.png")
+```
+
+???
+R objects will be shown here
+Other tabs not very needed for most users
+
+---
+# Rstudio Navigation - Everything Else
+
+```{r}
+knitr::include_graphics("images/panes_4.png")
+```
 
 ???
 
+As you can see, there are quite a few tabs here. These ones you can expect to usr frequently - more soon.
+Freedom to re-arrange and customize
 
-- environment setup
-- basic "pane" navigation
-  + enter basic code in console
-    + r as a calculator
-    + basic mathematic operators/forumals
+---
+
+# Project Setup 
+
+--
+
+"Projects" are not unique to R, but **Rprojects** are!
+--
+  + A folder for all your work
+  + A `.Rproj` file with the same name as the folder
+  + Self contained (ideally)
+
     
-  + simple built in functions - what is a function
-    + mean of vector
-    + 1:5 sequence
-    + c()
-    + vectors vs matrices vs data.frames
-      + data.frame ~ dataset
-    + built in R datasets
-    
-    
-  + reference this as analagous to a "do-file" in stata and "syntax file" in spss
-  + same code
-  + creating scripts/processes
-- loading packages 
-- explain packages
-- explain base r vs tidyverse
-  + consistent syntax
-  + data.frame centric - takes some of the confusion out of using R
+---
+
+# Project Setup
+
+```{r, fig.alt = "first step of setup: click 'file' then 'new project'"}
+knitr::include_graphics("images/new_proj_1.png")
+```
+
+---
+
+# Project Setup
+
+```{r, fig.alt = "second step of setup: choose new or existing directory, or GIT"}
+knitr::include_graphics("images/new_proj_2.png")
+```
+
+---
+
+# Project Setup
+
+```{r, fig.alt = "same picture highlighting first option, 'new directory'"}
+knitr::include_graphics("images/new_proj_2a.png")
+```
+
+---
+
+# Project Setup
+
+```{r, fig.alt = "same picture highlighting second option, 'existing directory'"}
+knitr::include_graphics("images/new_proj_2b.png")
+```
+
+---
+
+
+# Project Setup
+
+```{r, fig.alt = "same picture highlighting third option, 'version control / git'"}
+knitr::include_graphics("images/new_proj_2c.png")
+```
+
+---
+
+
+# Project Setup
+
+```{r, fig.alt = "next step, choose 'New Project' "}
+knitr::include_graphics("images/new_proj_3.png")
+```
+
+---
+
+
+# Project Setup
+
+```{r, fig.alt = "last step, name the project"}
+knitr::include_graphics("images/new_proj_4.png")
+```
+
+---
+
+
+# Project Setup
+
+```{r, fig.alt = "screenshot of rstudio showing project working drive and .Rproj file"}
+knitr::include_graphics("images/working_drive.png")
+```
 
 ---
 
@@ -900,6 +1007,24 @@ sub_data <- droplevels(sub_data) ## drop removed labels
 crosstab <- table(sub_data$EDATTAIN, sub_data$SEX)
 
 ```
+
+???
+
+
+  + reference this as analagous to a "do-file" in stata and "syntax file" in spss
+  + same code
+  + creating scripts/processes
+- loading packages 
+- explain packages
+- explain base r vs tidyverse
+  + consistent syntax
+  + data.frame centric - takes some of the confusion out of using R
+
+
++ enter basic code in console
+  + r as a calculator
+  + basic mathematic operators/forumals
+    
 
 ---
 
@@ -945,26 +1070,32 @@ Resources
 .pull-left[
 ### Base R
 ```{r, eval = TRUE, echo = TRUE}
+## print frequencies
+crosstab 
+```
 
-## Print Frequencies
-crosstab
-## Print Proportions
-prop.table(crosstab)
+```{r}
+## get proportions
+ppn_crosstab <- prop.table(crosstab) 
+ppn_crosstab
+```
+
+```{r}
+# round to 2 digits
+ppn_crosstab <- round(ppn_crosstab, 2) 
+ppn_crosstab
 
 ```
 ]
 
 .pull-right[
 ### gtsummary
-```{r, eval = FALSE, echo = TRUE}
+```{r, echo = TRUE}
 library(gtsummary)
 tbl_summary(sub_data, by = "SEX")
 
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-# knitr::include_graphics()
-```
 ]
 
 ---
@@ -972,7 +1103,7 @@ tbl_summary(sub_data, by = "SEX")
 # R + Packages  Graphs 
 .pull-left[
 ### Base R
-```{r}
+```{r, eval = FALSE}
 
 layout(matrix(c(1,1,2,2), 
               ncol = 4))
@@ -994,22 +1125,55 @@ legend("center", title = "Ed Attainment",
 )
 ```
 
-```{r, echo = FALSE}
-# knitr::include_graphics()
-```
 ]
 
 .pull-right[
 ### ggplot
-```{r}
+```{r, eval = FALSE}
 library(ggplot2)
 qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
 ```
 
+]
+
+---
+
+# R + Packages  Graphs 
+.pull-left[
+### Base R
 ```{r, echo = FALSE}
-# knitr::include_graphics()
+
+layout(matrix(c(1,1,2,2), 
+              ncol = 4))
+
+barplot(crosstab,
+        col = rainbow(4),
+        main = "Education by Sex"
+)
+
+plot(1, type = "n", bty = "n", 
+     xaxt = "n", xlab = "", 
+     yaxt = "n",ylab =""
+)
+
+legend("center", title = "Ed Attainment",
+       legend = levels(sub_data$EDATTAIN),
+       pch = 22, pt.bg = rainbow(4),
+       inset = c(-1,0)
+)
+```
+
+]
+
+.pull-right[
+### ggplot
+```{r, echo = FALSE}
+library(ggplot2)
+qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
 ```
 ]
+
+---
 
 --- 
 # Overview 4
@@ -1053,13 +1217,23 @@ Resources
 
 
 .pull-left[
+Pros
 * Easy to set up
-* Minimal documentation
+* Good for achieving tasks
+  + Run analysis, save outputs
+    + Review results later
+  + File management
+--
+
+Cons
+* Limited documentation
+* Wall of text
+  + tiring to look at
 ]
 .pull-right[
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.alt="screenshot of example script, code and comments are hard to differentiate"}
 
-# knitr::include_graphics()
+knitr::include_graphics("images/rscript.png")
 ```
 ]
 
@@ -1074,26 +1248,9 @@ Resources
 * Easy to document
 ]
 .pull-right[
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.alt="screenshot of r markdown file, code is more distinct, more formatting apparent"}
 
-# knitr::include_graphics()
-```
-]
-
----
-
-# Reporting in R - Rmarkdown
-
-
-.pull-left[
-* **Code** then **Knit**
-  + Two step process
-* Easy to document
-]
-.pull-right[
-```{r, echo = FALSE}
-
-# knitr::include_graphics()
+knitr::include_graphics("images/rmarkdown.png")
 ```
 ]
 
@@ -1103,14 +1260,16 @@ Resources
 
 Raw files are very similar.
 .pull-left[
-```{r, echo = FALSE}
-# knitr::include_graphics() ## rscript
+```{r, echo = FALSE, out.width="60%", fig.alt="screenshot of r markdown file, code is more distinct, more formatting is apparent" }
+
+knitr::include_graphics("images/rmarkdown.png")
 ```
 
 ]
 .pull-right[
-```{r, echo = FALSE}
-# knitr::include_graphics() ## rmarkdown
+```{r, echo = FALSE, out.width="60%", fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"}
+
+knitr::include_graphics("images/rmd_render.png")
 ```
 ]
 
@@ -1119,14 +1278,32 @@ Raw files are very similar.
 
 Results are very different.
 .pull-left[
-```{r, echo = FALSE}
-# knitr::include_graphics() ## rscript
+```{r, echo = FALSE, out.width="60%", fig.alt="screenshot of r markdown file, code is more distinct, more formatting is apparent" }
+
+knitr::include_graphics("images/rmarkdown.png")
 ```
 
 ]
 .pull-right[
-```{r, echo = FALSE}
-# knitr::include_graphics() ## rmarkdown
+```{r, echo = FALSE, fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"}
+knitr::include_graphics("images/rmd_render.png")
+```
+]
+
+---
+
+# Reporting in R - Rmarkdown
+
+
+.pull-left[
+* Polished looking reports
+  + pandoc styles
+* interactive HTML reports
+]
+.pull-right[
+```{r, echo = FALSE, fig.alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"}
+
+knitr::include_graphics("images/rmd_render.png")
 ```
 ]
 
@@ -1135,6 +1312,7 @@ RMD...
 encourage you to think of code in discrete chunks
 Encourages you to document code - for yourself or others
 flexible formats, slides, reports and more
+
 
 ---
 
@@ -1225,4 +1403,16 @@ Resources
 
 # NOTES 
 
-
+make sure code chunks are viewable
+dont always need 
+tweak figure sizes
+add resource links
+increment packages slide
+ipumsr logo
+overview slides
+installation not instalation
+check echo= for knitr::include_graphics
+highlight folder in file viewer
+show populated files in viewer
+show read-in of mydata from csv
+PROJECTS HELP KEEP YOU ORGANIZED BY KEEPING ALL YOUR FILES IN ONE PLACE
