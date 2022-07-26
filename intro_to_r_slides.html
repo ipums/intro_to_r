@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Introduction and exposure to   R and Rstudio</title>
+    <title>Introduction and exposure to   R and RStudio</title>
     <meta charset="utf-8" />
     <meta name="author" content="IPUMS International" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Introduction and exposure to <br/> R and Rstudio
+# Introduction and exposure to <br/> R and RStudio
 ]
 .author[
 ### IPUMS International
@@ -64,7 +64,6 @@ background-size: 140%
 
 
 ---
- 0
 
 Introduction
 .tab[
@@ -75,14 +74,12 @@ Key Terms
 
 --
 
-Getting Started
-.tab[
+Getting Started &lt;br&gt; .tab[
   Installation &lt;br&gt;
   Project Setup &lt;br&gt;
   Rstudio Navigation &lt;br&gt;
   Coding in R/Rstudio (Live Demo)
 ]
-
 --
 
 R + Packages 
@@ -109,10 +106,8 @@ will address at end
 and point to more resources
 
 ---
- 1
 
-Introduction
-.tab[
+Introduction &lt;br&gt; .tab[
 What is R &lt;br&gt;
 Why use R &lt;br&gt;
 Key Terms
@@ -120,8 +115,7 @@ Key Terms
 
 
 .greyed-out[
-Getting Started
-.tab[
+Getting Started &lt;br&gt; .tab[
   Installation &lt;br&gt;
   Project Setup &lt;br&gt;
   Rstudio Navigation &lt;br&gt;
@@ -136,9 +130,11 @@ R + Packages
 ]
 
 
-Reporting in R
+Reusable Code
 .tab[
-  Scripts vs Rmarkdown
+  R Scripts &lt;br&gt;
+  R Markdown &lt;br&gt;
+  Rmd Reports
 ]
 
 
@@ -147,6 +143,7 @@ Q&amp;A / Resources
 ]
 
 ---
+
 # Introduction
 
 
@@ -170,7 +167,6 @@ Q&amp;A / Resources
 
 .pull-right[
 ### Programming Language
-
 &lt;img src="images/python-logo.png" title="Python logo" alt="Python logo" width="40%" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -186,9 +182,7 @@ reporting.
 
 ---
 
-class: center
-
-# What is R?
+# Introduction - What is R?
 
 
 ### Statistical Software Package + Programming Language
@@ -288,6 +282,7 @@ that is constantly working to improve R and creating resources for learning R.
 Finally, in contrast to most other stats packages, R is free!
 
 ---
+
 # Key Terms
 
 --
@@ -305,10 +300,7 @@ Packages
 # Key Terms - **Functions**, Objects, Packages
 
 
-**Functions**
---
-
-* Perform operations in R
+### Functions
 --
 
 * End in parentheses
@@ -317,7 +309,7 @@ Packages
 * Take various **arguments** within their parentheses as **input**.
 --
 
-* Usually return **output**.
+* Perform operations on the **input** and usually return **output**.
 
 ---
 
@@ -329,10 +321,12 @@ Packages
   + `barplot()`
 --
 
+
 * Summarize Data
   + `summary()`
   + `table()`
 --
+
 
 * GET the Data
   + `read.csv()`
@@ -343,25 +337,24 @@ Packages
 
 
 .pull-left[
-User Input:
+### User Input:
 &lt;img src="images/read_csv_1.png" title="screenshot of user input to console for read.csv function" alt="screenshot of user input to console for read.csv function"  /&gt;
 ]
 
 --
 
+.pull-right[
+### R output:
+&lt;img src="images/print_csv_1.png" title="screenshot of console output for read.csv, first 12 lines" alt="screenshot of console output for read.csv, first 12 lines"  /&gt;
+`...`
+&lt;img src="images/print_csv_2.png" title="screenshot of console output for last 12 lines of read.csv function" alt="screenshot of console output for last 12 lines of read.csv function"  /&gt;
+]
+
+
 .pull-left[
 * The `read.csv()` **function** takes the `file`  **argument** as **input**. 
 * The filepath `"example_data.csv"` is the **argument** to the **function**
 
-]
-
---
-
-.pull-right[
-R output:
-&lt;img src="images/print_csv_1.png" title="screenshot of console output for read.csv, first 12 lines" alt="screenshot of console output for read.csv, first 12 lines"  /&gt;
-`...`
-&lt;img src="images/print_csv_2.png" title="screenshot of console output for last 12 lines of read.csv function" alt="screenshot of console output for last 12 lines of read.csv function"  /&gt;
 ]
 
  
@@ -414,23 +407,20 @@ We must **assign** the **output** of `read.csv()` to an **R Object** in order to
 
 # Key Terms - Functions, **Objects**, Packages
 
-
-
 ```r
  my_data `&lt;-` read.csv(file = "example_data.csv")
 ```
 
-
-**R objects** 
+### R objects 
   * Variables, data, or anything else stored in R's local memory, or **environment**,
   * Can be interacted with via **functions**
 
-To create an **R object**, use the `&lt;-` command.
+To create an **R object**, use the **`&lt;-`** command.
 --
 
   * `&lt;-` is called the **assignment operator**
   * Can be thought of as "gets" or "gets the result of"
-  * "*my_data gets the result of read.csv*"
+  * "my_data *gets the result of* read.csv"
 
 ---
 
@@ -440,10 +430,8 @@ To create an **R object**, use the `&lt;-` command.
 Now that `my_data` is stored as an **R object**, we can use **functions** to interact with it.
  
 .pull-left[
-
-User Input:
-
-&lt;img src="images/view_data_0.png" width="75%" /&gt;
+### User Input:
+&lt;img src="images/view_data_0.png" title="screenshot of r console to read in data from csv" alt="screenshot of r console to read in data from csv"  /&gt;
 
  * In some cases, like when only one argument is needed, the argument name does not need to be specified
  
@@ -453,7 +441,7 @@ User Input:
 
 .pull-right[
 
-R output:
+### R output:
 &lt;img src="images/view_data.png" title="screenshot of the results of View() function. Looks similar to excel." alt="screenshot of the results of View() function. Looks similar to excel." width="75%" /&gt;
 
 ]
@@ -461,24 +449,20 @@ R output:
 
 ???
 
-  * To type the assignment operator, use `[less than]``[minus sign]`
-
-"everything in R is an object, everything you do in R is a function" - someone, somewhere, probably
 
 ---
 
 # Key Terms
 
-Some functions work `data.frames`, while others are meant for single columns or `vectors`.
-  
-  
-  
-  
+Some functions work **`data.frames`**, while others are meant for single columns or **`vectors`**.
+
+
+
+
 --
 
 .pull-left[
-
-User Input:
+### User Input:
 
 ```r
 nrow(my_data)
@@ -493,8 +477,7 @@ table(my_data$SEX)
 
 
 .pull-right[
-
-R output:
+### R output:
 ![](images/functions_on_objects.png)&lt;!-- --&gt;
 
 
@@ -505,12 +488,10 @@ R output:
 
 # Key Terms
 
-Some functions work `data.frames`, while others are meant for single columns or `vectors`.
+Some functions work **`data.frames`**, while others are meant for single columns or **`vectors`**.
   + Specify a column name using **`$`**
-
 .pull-left[
-
-User Input:
+### User Input:
 
 ```r
 nrow(my_data)
@@ -523,23 +504,20 @@ table(my_data`$`SEX)
 
 ]
 
---
 
 .pull-right[
-
-R output:
+### R output:
 ![](images/functions_on_objects.png)&lt;!-- --&gt;
-
 
 ]
 
 
 ---
 
-
 # Key Terms - Functions, Objects, **Packages**
 
 **Packages** are bundles of custom-built  **functions**.
+
 --
 
 **base R** refers to the "starter set" of packages users get when they "download R".
@@ -553,9 +531,8 @@ R output:
 
   + *Can't someone else do it??*
 
+
 ---
-
-
 
 # Key Terms - Functions, Objects, **Packages**
 
@@ -586,9 +563,7 @@ The **C**omprehensive **R** **A**rchive **N**etwork (CRAN) hosts &gt; 18k Contri
 
 ???
 
-3 main "avenues" for packages
 
-While openxlsx is geared towards interacting with a specific filetype, other packages streamline common operations or execute specific analysis - all serve to expand the functionality of R
 
 ---
 
@@ -598,21 +573,27 @@ While openxlsx is geared towards interacting with a specific filetype, other pac
 
 The most powerful feature of R
 --
+
 * Expand support 
 * Streamline tasks
 * Achieve complex tasks
+
+???
+
+3 main "avenues" for packages
+
+While openxlsx is geared towards interacting with a specific filetype, other packages streamline common operations or execute specific analysis - all serve to expand the functionality of R
 
 ---
 
 # Key Terms - Functions, Objects, **Packages**
 
-While **base R** does not have support to read `.xlsx` files, the `openxlsx` **package** expands base R to provide read/write support.
+While **base R** does not have support to read **`.xlsx`** files, the **`openxlsx`** **package** expands base R to provide read/write support.
 --
 
 .pull-left[
 
 ```r
-
 ## Download from CRAN
 install.packages("openxlsx") 
 ```
@@ -622,7 +603,7 @@ install.packages("openxlsx")
 
 * `install.packages()` needs to be done only once - or periodically to update. 
 * Use one or more `#` to add comments to R code.
-* `library()` needs to called each time you open R (to access that package)
+
 ]
 
 ---
@@ -663,7 +644,7 @@ write.xlsx(my_data,
 
 # Key Terms - Functions, Objects, **Packages**
 
-For interacting with other stats packages (eg, STATA, SPSS, SAS), we recommend the `haven` package.
+For interacting with other stats packages (eg, STATA, SPSS, SAS), we recommend the **`haven`** package.
 
 .pull-left[
 
@@ -684,7 +665,7 @@ read_sav()
 ]
 .pull-right[
 In addition to supporting many filetypes, `haven` supports labeled values
-  + More on this in the demo
+  + More on this in **`example_script`**
 ]
 
 ---
@@ -692,9 +673,7 @@ In addition to supporting many filetypes, `haven` supports labeled values
 # Key Terms - Functions, Objects, **Packages**
 
 Streamlining common tasks
-
 .pull-left[
-  
 
 ```r
 
@@ -710,15 +689,34 @@ library(ggplot2)
 ]
 
 .pull-right[
-
   * `gtsummary` Makes it easy to render informative and polished tables.
   * `ggplot2` Makes data visualization easier. 
-  * More on this in the demo
+  * More on these in Reusable Code
 ]
 
 ???
 
 
+---
+
+# Key Terms - Functions, Objects, **Packages**
+
+Achieve complex tasks - **`ipumsr`**
+
+.pull-left[
+&lt;img src="images/ipumsr_logo.png" title="ipumsr logo" alt="ipumsr logo"  /&gt;
+
+]
+
+.pull-right[
+  * Developed in-house functions for working with IPUMS microdata and metadata
+    + Highly structured and standardized data
+    + DDI standard, plus IPUMS-specific fields
+  * Released on CRAN in 2017
+    + Constantly improving
+
+]
+  
 ---
 
 # Key Terms - Functions, Objects, **Packages**
@@ -730,22 +728,15 @@ Achieve complex tasks - `ipumsr`
 
 ]
 
---
-
 .pull-right[
   * Developed in-house functions for working with IPUMS microdata and metadata
     + Highly structured and standardized data
     + DDI standard, plus IPUMS-specific fields
   * Released on CRAN in 2017
     + Constantly improving
-]
-.pull-right[
   * + **Newly added** API support for the IPUMS microdata extract system.
 ]
   
-
-
-
 
 ???
 
@@ -755,59 +746,52 @@ Achieve complex tasks - `ipumsr`
 
 # Key Terms - Review
 
-Functions
+### Functions
 
 
-Objects
+### Objects
 
 
-Packages
+### Packages
 
 
 
 ---
 
-# Key Terms
+# Key Terms - Review
 
-Review
-
-* Functions
+### Functions
   + *Do* things in R
   
-* Objects
+### Objects
 
 
-
-* Packages
+### Packages
 
 
 ---
 
-# Key Terms
+# Key Terms - Review
 
-Review
-
-* Functions
+### Functions
   + *Do* things in R
   
-* Objects
+### Objects
   + *Are* things in R
 
-* Packages
+### Packages
 
 ---
 
-# Key Terms
+# Key Terms - Review
 
-Review
-
-* Functions
+### Functions
   + *Do* things in R
   
-* Objects
+### Objects
   + *Are* things in R
 
-* Packages
+### Packages
   + *Contain* things in R
 
 
@@ -822,13 +806,13 @@ Key Terms
 ]]
 
 
-Getting Started
-.tab[
+Getting Started &lt;br&gt; .tab[
   Installation &lt;br&gt;
   Rstudio Navigation &lt;br&gt;
   Project Setup &lt;br&gt;
   Coding in R/Rstudio (Live Demo)
 ]
+
 
 .greyed-out[
 R + Packages 
@@ -838,11 +822,12 @@ R + Packages
 ]
 
 
-Reporting in R
+Reusable Code
 .tab[
-  Scripts vs Rmarkdown
+  R Scripts &lt;br&gt;
+  R Markdown &lt;br&gt;
+  Rmd Reports
 ]
-
 
 Q&amp;A / Resources
 
@@ -875,19 +860,17 @@ Don't go too quickly on this
 
 # Getting Started - Installation: Rstudio
 https://www.rstudio.com/
-&lt;img src="images/rstudio_install2.png" title="A screenshot of download links on cran.r-project.org" alt="A screenshot of download links on cran.r-project.org"  /&gt;
+--
 
+&lt;img src="images/rstudio_install2.png" title="A screenshot of download links on cran.r-project.org" alt="A screenshot of download links on cran.r-project.org"  /&gt;
 
 
 
 ???
   + https://www.rstudio.com/products/rstudio/download/
   + https://www.rstudio.com/products/rstudio/download-server/
-
   + **NOTE:** Might require admin privileges
   
-
-
 ---
 
 class: center
@@ -925,12 +908,10 @@ fun to use R
 Any R users currently - raise hands
 
 
+  
 ---
 
-# Getting Started - Rstudio Navigation
-
-
-
+# Getting Started - RStudio Navigation
 
 --
 
@@ -973,6 +954,10 @@ Freedom to re-arrange and customize
 
 "Projects" are not unique to R, but **Rprojects** are!
 --
+
+### R projects
+--
+
   + A folder for all your work
   + A `.Rproj` file with the same name as the folder
   + Self contained (ideally)
@@ -982,43 +967,43 @@ Freedom to re-arrange and customize
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_1.png" title="first step of setup: click 'file' then 'new project'" alt="first step of setup: click 'file' then 'new project'"  /&gt;
+&lt;img src="images/new_proj_1.png" title="first step of setup: click 'file' then 'new project'" alt="first step of setup: click 'file' then 'new project'" width="90%" /&gt;
 
 ---
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_2.png" title="second step of setup: choose new or existing directory, or GIT" alt="second step of setup: choose new or existing directory, or GIT"  /&gt;
+&lt;img src="images/new_proj_2.png" title="second step of setup: choose new or existing directory, or GIT" alt="second step of setup: choose new or existing directory, or GIT" width="75%" /&gt;
 
 ---
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_2a.png" title="same picture highlighting first option, 'new directory'" alt="same picture highlighting first option, 'new directory'"  /&gt;
+&lt;img src="images/new_proj_2a.png" title="same picture highlighting first option, 'new directory'" alt="same picture highlighting first option, 'new directory'" width="75%" /&gt;
 
 ---
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_2b.png" title="same picture highlighting second option, 'existing directory'" alt="same picture highlighting second option, 'existing directory'"  /&gt;
+&lt;img src="images/new_proj_2b.png" title="same picture highlighting second option, 'existing directory'" alt="same picture highlighting second option, 'existing directory'" width="75%" /&gt;
 
 ---
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_2c.png" title="same picture highlighting third option, 'version control / git'" alt="same picture highlighting third option, 'version control / git'"  /&gt;
+&lt;img src="images/new_proj_2c.png" title="same picture highlighting third option, 'version control / git'" alt="same picture highlighting third option, 'version control / git'" width="75%" /&gt;
 
 ---
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_3.png" title="next step, choose 'New Project' " alt="next step, choose 'New Project' "  /&gt;
+&lt;img src="images/new_proj_3.png" title="next step, choose 'New Project' " alt="next step, choose 'New Project' " width="75%" /&gt;
 
 ---
 
 # Getting Started - Project Setup
 
-&lt;img src="images/new_proj_4.png" title="last step, name the project" alt="last step, name the project"  /&gt;
+&lt;img src="images/new_proj_4.png" title="last step, name the project" alt="last step, name the project" width="75%" /&gt;
 
 ---
 
@@ -1068,18 +1053,20 @@ Getting Started
   Rstudio Navigation &lt;br&gt;
   Coding in R/Rstudio (Live Demo)
 ]
-
+]
 
 R + Packages 
 .tab[  
   Tables &lt;br&gt;
   Graphs 
-
+]
 
 .greyed-out[
-Reporting in R
+Reusable Code
 .tab[
-  Scripts vs Rmarkdown
+  R Scripts &lt;br&gt;
+  R Markdown &lt;br&gt;
+  Rmd Reports
 ]
 
 
@@ -1089,572 +1076,45 @@ Q&amp;A / Resources
 
 ---
 
-# R + Packages - Tables 
+# R + Packages: Tables 
 
 --
 
 .pull-left[
 ### Base R
-
-```r
-## print frequencies
-crosstab 
-##                              
-##                               Male Female
-##   Less than primary completed 1270   1218
-##   Primary completed           1019    954
-##   Secondary completed           57     73
-##   University completed         163    126
-```
-
-
-```r
-## get proportions
-ppn_crosstab &lt;- prop.table(crosstab) 
-ppn_crosstab
-##                              
-##                                     Male     Female
-##   Less than primary completed 0.26024590 0.24959016
-##   Primary completed           0.20881148 0.19549180
-##   Secondary completed         0.01168033 0.01495902
-##   University completed        0.03340164 0.02581967
-```
-
-
-```r
-# round to 2 digits
-ppn_crosstab &lt;- round(ppn_crosstab, 2) 
-ppn_crosstab
-##                              
-##                               Male Female
-##   Less than primary completed 0.26   0.25
-##   Primary completed           0.21   0.20
-##   Secondary completed         0.01   0.01
-##   University completed        0.03   0.03
-```
+&lt;img src="images/ppn-tab-base-r.png" title="Screenshot of two lines of code to create a table of proportions, starting with previously created crosstab object, and passing it to the prop.table() and round() functions. The table is then printed by calling the object name ('ppn_tab')." alt="Screenshot of two lines of code to create a table of proportions, starting with previously created crosstab object, and passing it to the prop.table() and round() functions. The table is then printed by calling the object name ('ppn_tab')."  /&gt;
 ]
+
+--
 
 .pull-right[
 ### gtsummary
+&lt;img src="images/ppn-tab-gtsummary-code.png" title="Screenshot of code tbl_summary(sub_data, by = 'SEX')" alt="Screenshot of code tbl_summary(sub_data, by = 'SEX')"  /&gt;
 
-```r
-library(gtsummary)
-tbl_summary(sub_data, by = "SEX")
-```
-
-<div id="cracfgmnca" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#cracfgmnca .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#cracfgmnca .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#cracfgmnca .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#cracfgmnca .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#cracfgmnca .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#cracfgmnca .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#cracfgmnca .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#cracfgmnca .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#cracfgmnca .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#cracfgmnca .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#cracfgmnca .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#cracfgmnca .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#cracfgmnca .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cracfgmnca .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#cracfgmnca .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#cracfgmnca .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cracfgmnca .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#cracfgmnca .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cracfgmnca .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#cracfgmnca .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cracfgmnca .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#cracfgmnca .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cracfgmnca .gt_left {
-  text-align: left;
-}
-
-#cracfgmnca .gt_center {
-  text-align: center;
-}
-
-#cracfgmnca .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#cracfgmnca .gt_font_normal {
-  font-weight: normal;
-}
-
-#cracfgmnca .gt_font_bold {
-  font-weight: bold;
-}
-
-#cracfgmnca .gt_font_italic {
-  font-style: italic;
-}
-
-#cracfgmnca .gt_super {
-  font-size: 65%;
-}
-
-#cracfgmnca .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#cracfgmnca .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-#cracfgmnca .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#cracfgmnca .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
-}
-
-#cracfgmnca .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
-}
-
-#cracfgmnca .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Male</strong>, N = 2,509<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Female</strong>, N = 2,371<sup class="gt_footnote_marks">1</sup></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">EDATTAIN</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Less than primary completed</td>
-<td class="gt_row gt_center">1,270 (51%)</td>
-<td class="gt_row gt_center">1,218 (51%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Primary completed</td>
-<td class="gt_row gt_center">1,019 (41%)</td>
-<td class="gt_row gt_center">954 (40%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Secondary completed</td>
-<td class="gt_row gt_center">57 (2.3%)</td>
-<td class="gt_row gt_center">73 (3.1%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">University completed</td>
-<td class="gt_row gt_center">163 (6.5%)</td>
-<td class="gt_row gt_center">126 (5.3%)</td></tr>
-    <tr><td class="gt_row gt_left">EMPSTAT</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">NIU (not in universe)</td>
-<td class="gt_row gt_center">585 (23%)</td>
-<td class="gt_row gt_center">511 (22%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Employed</td>
-<td class="gt_row gt_center">1,183 (47%)</td>
-<td class="gt_row gt_center">583 (25%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unemployed</td>
-<td class="gt_row gt_center">72 (2.9%)</td>
-<td class="gt_row gt_center">49 (2.1%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Inactive</td>
-<td class="gt_row gt_center">667 (27%)</td>
-<td class="gt_row gt_center">1,222 (52%)</td></tr>
-    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unknown/missing</td>
-<td class="gt_row gt_center">2 (&lt;0.1%)</td>
-<td class="gt_row gt_center">6 (0.3%)</td></tr>
-    <tr><td class="gt_row gt_left">AGE</td>
-<td class="gt_row gt_center">22 (10, 39)</td>
-<td class="gt_row gt_center">23 (11, 39)</td></tr>
-  </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="3"><sup class="gt_footnote_marks">1</sup> n (%); Median (IQR)</td>
-    </tr>
-  </tfoot>
-</table>
-</div>
+&lt;img src="images/ppn-tab-gtsummary-result.png" title="Screenshot of HTML table of EDATTAIN frequencies and percentage distribution by SEX, produced by the preceding tbl_summary function call." alt="Screenshot of HTML table of EDATTAIN frequencies and percentage distribution by SEX, produced by the preceding tbl_summary function call."  /&gt;
 
 ]
 
 ---
 
-# R + Packages  Graphs 
+# R + Packages: Graphs 
 .pull-left[
 ### Base R
-
-```r
-
-layout(matrix(c(1,1,2,2), 
-              ncol = 4))
-
-barplot(crosstab,
-        col = rainbow(4),
-        main = "Education by Sex"
-)
-
-plot(1, type = "n", bty = "n", 
-     xaxt = "n", xlab = "", 
-     yaxt = "n",ylab =""
-)
-
-legend("center", title = "Ed Attainment",
-       legend = levels(sub_data$EDATTAIN),
-       pch = 22, pt.bg = rainbow(4),
-       inset = c(-1,0)
-)
-```
+&lt;img src="images/barplot-base-r-code.png" width="90%" /&gt;
 
 ]
 
-.pull-right[
-### ggplot
+--
 
-```r
-library(ggplot2)
-qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
-```
+.pull-right[
+### ggplot2
+&lt;img src="images/barplot-ggplot2-code.png" width="50%" /&gt;
 
 ]
 
 ---
 
-# R + Packages  Graphs 
+# R + Packages: Graphs 
 .pull-left[
 ### Base R
 ![](intro_to_r_slides_files/figure-html/unnamed-chunk-48-1.png)&lt;!-- --&gt;
@@ -1662,21 +1122,20 @@ qplot(x = SEX, fill = EDATTAIN, data = sub_data, geom = "bar")
 ]
 
 .pull-right[
-### ggplot
+### ggplot2
 ![](intro_to_r_slides_files/figure-html/unnamed-chunk-49-1.png)&lt;!-- --&gt;
 ]
 
 
 --- 
- 4
-
+ 
 .greyed-out[
 Introduction
 .tab[
 What is R &lt;br&gt;
 Why use R &lt;br&gt;
 Key Terms
-]]
+]
 
 
 Getting Started
@@ -1685,206 +1144,161 @@ Getting Started
   Project Setup &lt;br&gt;
   Rstudio Navigation &lt;br&gt;
   Coding in R/Rstudio (Live Demo)
+]
 
 
 R + Packages 
 .tab[  
   Tables &lt;br&gt;
   Graphs 
-]
-
-
-Reporting in R
-.tab[
-  Scripts vs Rmarkdown
 ]]
 
 
+Reusable Code
+.tab[
+  R Scripts &lt;br&gt;
+  R Markdown &lt;br&gt;
+  Rmd Reports
+]
+
+.greyed-out[
 Q&amp;A / Resources
-
 ]
+
 
 ---
 
-# Reporting in R - Rscripts
+# Reusable Code: R Scripts
 
+&lt;img src="images/rscript_cropped.png" title="screenshot of example script, code and comments are hard to differentiate" alt="screenshot of example script, code and comments are hard to differentiate"  /&gt;
 
-.pull-left[
-Pros
-* Easy to set up
-* Good for achieving tasks
-  + Run analysis, save outputs
-    + Review results later
-  + File management
---
+???
+One of the benefits of doing your data cleaning and analysis using code is 
+that you can document what you did, and you can reuse and adapt your code for 
+future work.
 
-Cons
-* Limited documentation
-* Wall of text
-  + tiring to look at
-]
-.pull-right[
-&lt;img src="images/rscript.png" title="screenshot of example script, code and comments are hard to differentiate" alt="screenshot of example script, code and comments are hard to differentiate"  /&gt;
-]
+One way to save your code to make it reusable is to put it in what we call an 
+R "script", which is just a plain text file with a ".R" file extension.
+
+R scripts are great for data cleaning and other tasks where you're not focused 
+on communicating your results, but they do have some limitations. First, you 
+can only provide context and explanation of your code through the use of 
+comments, which are the green lines we see here that start with one or more 
+hashtag symbols, and there is no support for formatted text such as bold or 
+italics. Second, running an R script does not by default create a save-able 
+output file that weaves together your code, explanatory text, and output 
+objects, such as tables and graphs. Thus, if you wanted to create a report from 
+an R script, you might end up saving tables and graphs out to their own files, 
+then copying and pasting those into something like a Microsoft Word document. 
+That's where R Markdown documents come in.
+
 
 ---
 
-# Reporting in R - Rmarkdown
+# Reusable Code + Reporting: R Markdown
 
+&lt;img src="images/rmarkdown_cropped.png" title="screenshot of r markdown file, code is more distinct, more formatting apparent" alt="screenshot of r markdown file, code is more distinct, more formatting apparent" width="95%" /&gt;
 
-.pull-left[
-* **Code** then **Knit**
-  + Two step process
-* Easy to document
-]
-.pull-right[
-&lt;img src="images/rmarkdown.png" title="screenshot of r markdown file, code is more distinct, more formatting apparent" alt="screenshot of r markdown file, code is more distinct, more formatting apparent"  /&gt;
-]
-
----
-
-# Reporting in R - Side by Side
-
-Raw files are very similar.
-.pull-left[
-&lt;img src="images/rmarkdown.png" title="screenshot of r markdown file, code is more distinct, more formatting is apparent" alt="screenshot of r markdown file, code is more distinct, more formatting is apparent" width="60%" /&gt;
-
-]
-.pull-right[
-&lt;img src="images/rmd_render.png" title="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration" alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration" width="60%" /&gt;
-]
-
----
-# Reporting in R - Side by Side
-
-Results are very different.
-.pull-left[
-&lt;img src="images/rmarkdown.png" title="screenshot of r markdown file, code is more distinct, more formatting is apparent" alt="screenshot of r markdown file, code is more distinct, more formatting is apparent" width="60%" /&gt;
-
-]
-.pull-right[
-&lt;img src="images/rmd_render.png" title="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration" alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"  /&gt;
-]
+???
+R Markdown documents, such as the one shown in the screenshot here, are also 
+just plain text files, but with a .Rmd file extension instead of .R. However, 
+R Markdown documents use a special syntax that allows you to weave together
+formatted explanatory text and code chunks, and most importantly, R Markdown 
+documents can be rendered to produce HTML, PDF, or Microsoft Word reports that 
+included formatted text, R code, and code output, including tables and graphs.
 
 ---
 
-# Reporting in R - Rmarkdown
-
+# Reusable Code: R Script vs. R Markdown
 
 .pull-left[
-* Polished looking reports
-  + pandoc styles
-* interactive HTML reports
+&lt;img src="images/rscript_cropped.png" title="screenshot of example script, code and comments are hard to differentiate" alt="screenshot of example script, code and comments are hard to differentiate"  /&gt;
+
 ]
 .pull-right[
-&lt;img src="images/rmd_render.png" title="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration" alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration"  /&gt;
+&lt;img src="images/rmarkdown_cropped.png" title="screenshot of r markdown file, code is more distinct, more formatting apparent" alt="screenshot of r markdown file, code is more distinct, more formatting apparent"  /&gt;
 ]
 
 ???
-RMD...
-encourage you to think of code in discrete chunks
-Encourages you to document code - for yourself or others
-flexible formats, slides, reports and more
+So, as I said, both R scripts and R Markdown documents are a great way to save 
+your code to document it and make it reusable, and both are ultimately just
+plain text files, as we see here with the R script on the left and the R 
+Markdown document on the right. Using R Markdown requires learning a little bit 
+of additional syntax, but there is a lot of documentation out there to help you 
+learn it, and the payoff...
+
+
+---
+
+# Reusable Code: R Markdown Report
+
+
+&lt;img src="images/rmd_render_with_graph.png" title="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration" alt="screenshot of rendered html report showing table of contents, headings, and stylized code/plain text narration" width="80%" style="display: block; margin: auto;" /&gt;
+
+???
+Is that you can create beautiful, reproducible reports like the HTML report we 
+see here. Here we see a hyperlinked table of contents to navigate our document, 
+a formatted heading and explanatory text, an R code chunk, and the graph 
+produced by that R code. 
+
+If we had created this report by pasting tables and graphs into Microsoft Word,
+and then we realized we wanted to make a change, we would have to rerun our code
+and manually copy and paste the results back into our document. With R Markdown,
+making a change to the report is as easy as changing your code and clicking a
+button to re-render the report.
 
 
 ---
 
 .greyed-out[
-
 Introduction
-
-  What is R
-  
-  Why use R
-  
-  Key Terms
-
-Getting Started
-  
-  Installation
-  
-  Rstudio Navigation (Live Demo)
-  
-  Coding in R/Rstudio (Live Demo)
-
-R + Packages 
-
-  Tables
-  
-  Graphs 
-  
-Reporting in R
-
-  Scripts vs Rmd]
-
-Q&amp;A
-.greyed-out[
-Resources
+.tab[
+What is R &lt;br&gt;
+Why use R &lt;br&gt;
+Key Terms
 ]
 
----
-
-.greyed-out[
-
-Introduction
-
-  What is R
-  
-  Why use R
-  
-  Key Terms
 
 Getting Started
-  
-  Installation
-  
-  Rstudio Navigation (Live Demo)
-  
+.tab[
+  Installation &lt;br&gt;
+  Project Setup &lt;br&gt;
+  Rstudio Navigation &lt;br&gt;
   Coding in R/Rstudio (Live Demo)
+]
+
 
 R + Packages 
-
-  Tables
-  
+.tab[  
+  Tables &lt;br&gt;
   Graphs 
-  
-Reporting in R
-
-  Scripts vs Rmd
-
-Q&amp;A]
-Resources
+]]
 
 
----
-# Resources
+Reusable Code
+.tab[
+  R Scripts &lt;br&gt;
+  R Markdown &lt;br&gt;
+  Rmd Reports
+]]
+
+Q&amp;A / Resources
 
 
-```r
-## ipums logo or website banner
-# knitr::include_graphics()
-```
-
-* link to webpage
 
 ---
 
+class: center
 
-# NOTES 
+# Resources for Learning R
 
-make sure code chunks are viewable
-dont always need 
-tweak figure sizes
-add resource links
-increment packages slide
-ipumsr logo
-overview slides
-installation not instalation
-check echo= for knitr::include_graphics
-highlight folder in file viewer
-show populated files in viewer
-show read-in of mydata from csv
-PROJECTS HELP KEEP YOU ORGANIZED BY KEEPING ALL YOUR FILES IN ONE PLACE
+Visit the [IPUMS Workshop Resources page](https://international.ipums.org/international/census_workshop_malaysia_2022.shtml)
+
+![](images/workshop_resources_webpage_screenshot.png)&lt;!-- --&gt;
+
+---
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
